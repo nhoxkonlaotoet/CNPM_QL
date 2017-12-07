@@ -1,6 +1,6 @@
 ﻿namespace CNPM
 {
-    partial class FormController
+    partial class FormTranport
     {
         /// <summary>
         /// Required designer variable.

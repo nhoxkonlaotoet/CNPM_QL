@@ -7,7 +7,6 @@ D:\HK5\SE\CNPM\CNPM\obj\Debug\CNPM.Properties.Resources.resources
 D:\HK5\SE\CNPM\CNPM\obj\Debug\CNPM.csproj.GenerateResource.Cache
 D:\HK5\SE\CNPM\CNPM\obj\Debug\CNPM.exe
 D:\HK5\SE\CNPM\CNPM\obj\Debug\CNPM.pdb
-D:\HK5\SE\CNPM\CNPM\obj\Debug\CNPM.FormController.resources
 D:\HK5\SE\CNPM\CNPM\bin\Debug\GMap.NET.Core.dll
 D:\HK5\SE\CNPM\CNPM\bin\Debug\GMap.NET.WindowsForms.dll
 D:\HK5\SE\CNPM\CNPM\bin\Debug\GMap.NET.Core.xml
@@ -18,3 +17,4 @@ D:\HK5\SE\CNPM\CNPM\obj\Debug\CNPM.FormEmployee.resources
 D:\HK5\SE\CNPM\CNPM\obj\Debug\CNPM.FormLogin.resources
 D:\HK5\SE\CNPM\CNPM\obj\Debug\CNPM.FormMap.resources
 D:\HK5\SE\CNPM\CNPM\obj\Debug\CNPM.FormOrder.resources
+D:\HK5\SE\CNPM\CNPM\obj\Debug\CNPM.FormTranport.resources

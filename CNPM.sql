@@ -119,10 +119,10 @@ create table DonHang(
 )
 DBCC CHECKIDENT ('[DonHang]', RESEED, 0);
 
-insert into DonHang values('10/20/2017', 15000, 0, N'Đã giao');
-insert into DonHang values('10/20/2017', 9000, 1, N'Đã giao');
-insert into DonHang values('10/20/2017', 20000, 1, N'Đã giao');
-insert into DonHang values('10/20/2017', 15000, 2, N'Đã giao');
+insert into DonHang values('10/20/2017', 15000, 0, N'Đã nhận');
+insert into DonHang values('10/20/2017', 9000, 1, N'Đã nhận');
+insert into DonHang values('10/20/2017', 20000, 1, N'Đã nhận');
+insert into DonHang values('10/20/2017', 15000, 2, N'Đã nhận');
 insert into DonHang values('10/20/2017', 25000, 3, N'Đã gửi');
 insert into DonHang values('10/20/2017', 15000, 4, N'Đã gửi');
 
@@ -156,7 +156,7 @@ insert into GiaoHang values(2,1,'10/20/2017');
 insert into GiaoHang values(3,0,'10/20/2017');
 
 create table HoaDon(
-	MaHD int primary key, 
+	MaHD int identity primary key, 
 	NgayIn date, 
 	TongSoTien int, 
 	MaDH int references DonHang(MaDH), 
@@ -165,10 +165,10 @@ create table HoaDon(
 
 DBCC CHECKIDENT ('[HoaDon]', RESEED, 0);
 
-insert into HoaDon values(0, '10/20/2017',15000, 0, 0);
-insert into HoaDon values(1, '10/20/2017',9000, 1,2);
-insert into HoaDon values(2, '10/20/2017',20000, 2, 1);
-insert into HoaDon values(3, '10/20/2017',15000, 3, 0);
+insert into HoaDon values('10/20/2017',15000, 0, 0);
+insert into HoaDon values('10/20/2017',9000, 1,2);
+insert into HoaDon values('10/20/2017',20000, 2, 1);
+insert into HoaDon values('10/20/2017',15000, 3, 0);
 
 create table ChiTietHoaDon(
 	MaHD int references HoaDon(MaHD), 

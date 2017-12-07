@@ -85,7 +85,7 @@ namespace CNPM
         private void btnDelete_Click(object sender, EventArgs e)
         {
             int r = dgvProduct.CurrentCell.RowIndex;
-            string id = dgvProduct.Rows[r].Cells["MaSP"].Value.ToString();
+            int id = int.Parse(dgvProduct.Rows[r].Cells["MaSP"].Value.ToString());
             DialogResult traloi;
             traloi = MessageBox.Show("Bạn muốn xoá?", "Trả lời",
             MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -107,8 +107,8 @@ namespace CNPM
         private void btnSave_Click(object sender, EventArgs e)
         {
 
-            string id = txtId.Text;
-            string typeId = cboTypeId.Text;
+            int id = int.Parse(txtId.Text);
+            int typeId = int.Parse(cboTypeId.Text);
             string manufactureDate = txtManufactureDate.Text;
             string expireDate = txtExpireDate.Text;
             string status = cboStatus.Text;
@@ -116,7 +116,7 @@ namespace CNPM
             string err = "";
             if (add)
             {
-                if (db.InsertProduct(id, status, typeId, manufactureDate, expireDate, ref err))
+                if (db.InsertProduct(status, typeId, manufactureDate, expireDate, ref err))
                 {
                     LoadData();
                     MessageBox.Show("Đã thêm");
@@ -160,7 +160,7 @@ namespace CNPM
 
         private void btnDeleteType_Click(object sender, EventArgs e)
         {
-            string typeId = cboTypeId1.Text;
+            int typeId = int.Parse(cboTypeId1.Text);
             DialogResult traloi;
             traloi = MessageBox.Show("Bạn muốn xoá?", "Trả lời",
             MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -181,7 +181,7 @@ namespace CNPM
 
         private void btnSaveType_Click(object sender, EventArgs e)
         {
-            string typeId = cboTypeId1.Text;
+            int typeId = int.Parse(cboTypeId1.Text);
             string typeName = txtTypeName.Text;
             float capacity = float.Parse(txtCapacity.Text);
             int price =int.Parse(txtPrice.Text);
@@ -190,7 +190,7 @@ namespace CNPM
             string err = "";
             if (addType)
             {
-                if (db.InsertProductType(typeId, typeName, capacity, price, MyConvert.ImageToByteArray(img) , ref err))
+                if (db.InsertProductType( typeName, capacity, price, MyConvert.ImageToByteArray(img) , ref err))
                 {
                     LoadData();
                     MessageBox.Show("Đã thêm");
@@ -261,7 +261,7 @@ namespace CNPM
         private void cboTypeId1_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataRowView drv = (DataRowView)cboTypeId1.SelectedItem;
-            string typeId = (string)drv.Row.ItemArray[0];
+            int typeId = (int)drv.Row.ItemArray[0];
             BLProduct db = new BLProduct();
             DataTable dt = db.getType(typeId);
             txtTypeName.Text = dt.Rows[0]["TenLoai"].ToString();

@@ -46,7 +46,7 @@ namespace CNPM
             switch (btn.Tag.ToString())
             {
                 case CONTROLLER:
-                    FormController fc = new FormController();
+                    FormTranport fc = new FormTranport();
                     fc.MdiParent = this;
                     fc.Dock = DockStyle.Fill;
                     fc.Show();

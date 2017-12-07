@@ -8,10 +8,10 @@ using System.Data;
 
 namespace CNPM.BL_Layer
 {
-    public class BLController
+    public class BLTransport
     {
         DBMain db;
-        public BLController()
+        public BLTransport()
         {
             db = new DBMain();
         }
@@ -28,27 +28,27 @@ namespace CNPM.BL_Layer
             return db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
         }
         // thông tin của đơn hàng
-        public DataTable GetOrder(string orderId)
+        public DataTable GetOrder(int orderId)
         {
             string sqlString = @"select MaDH, ThoiDiemDatHang, HoTen,DiaChi,Lat,Lng, SoDienThoai, TongSoTien 
                                     from DonHang, KhachHang 
-                                    where DonHang.MaKH=KhachHang.MaKH and MaDH='" + orderId+"'";
+                                    where DonHang.MaKH=KhachHang.MaKH and MaDH=" + orderId;
             return db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
         }
         // chi tiết của đơn hàng
-        public DataTable GetDetail(string orderId)
+        public DataTable GetDetail(int orderId)
         {
             string sqlString = @"select SanPham.MaSP, TenLoai as TenSanPham, DungTich, Gia
                                 from ChiTietDonHang,SanPham,LoaiSanPham 
                                 where ChiTietDonHang.MaSP=SanPham.MaSP 
-		                        and SanPham.MaLoai=LoaiSanPham.MaLoai and MaDH='" + orderId + "'";
+		                        and SanPham.MaLoai=LoaiSanPham.MaLoai and MaDH=" + orderId;
             return db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
         }
-        public bool InsertTransport(string empId, string orderId, DateTime time, ref string err)
+        public bool InsertTransport(int empId, int orderId, DateTime time, ref string err)
         {
-            string sqlString = "Insert into GiaoHang values('" + orderId + "', '" + empId + "', '" + time.ToString("MM/dd/yyyy HH:mm:ss") + "');";
-            sqlString += "Update DonHang set TrangThai=N'Đã giao' where MaDH='" + orderId + "';";
-            sqlString += "Update NhanVien set TrangThai=N'Đang giao hàng' where MaNV='" + empId + "'";
+            string sqlString = "Insert into GiaoHang values(" + orderId + ", " + empId + ", '" + time.ToString("MM/dd/yyyy HH:mm:ss") + "');";
+            sqlString += "Update DonHang set TrangThai=N'Đã giao' where MaDH=" + orderId + ";";
+            sqlString += "Update NhanVien set TrangThai=N'Đang giao hàng' where MaNV=" + empId ;
             return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
         }
     }

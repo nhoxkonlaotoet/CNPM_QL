@@ -16,6 +16,8 @@ namespace CNPM
         public FormLogin()
         {
             InitializeComponent();
+            txtID.Text = "chu";
+            txtPassword.Text = "123456";
         }
 
         private void btnOK_Click(object sender, EventArgs e)

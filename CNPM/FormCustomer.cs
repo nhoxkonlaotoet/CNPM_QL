@@ -43,7 +43,7 @@ namespace CNPM
 
             if (!rbtnMale.Checked)
                 rbtnFemale.Checked = true;
-            try { picAvatar.Image = MyConvert.ByteArrayToImage(new BLCustomer().Avatar(txtId.Text)); }
+            try { picAvatar.Image = MyConvert.ByteArrayToImage(new BLCustomer().Avatar(int.Parse(txtId.Text))); }
             catch { picAvatar.Image = null; }
 
         }
@@ -74,7 +74,7 @@ namespace CNPM
         private void btnDelete_Click(object sender, EventArgs e)
         {
             int r = dgvCustomer.CurrentCell.RowIndex;
-            string id = dgvCustomer.Rows[r].Cells["MaKH"].Value.ToString();
+            int id = int.Parse(dgvCustomer.Rows[r].Cells["MaKH"].Value.ToString());
             DialogResult traloi;
             traloi = MessageBox.Show("Bạn muốn xoá?", "Trả lời",
             MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -96,7 +96,7 @@ namespace CNPM
         private void btnSave_Click(object sender, EventArgs e)
         {
             BLCustomer db = new BLCustomer();
-            string id = txtId.Text;
+            int id = int.Parse(txtId.Text);
             string name = txtName.Text;
             int age;
             try { age = int.Parse(txtAge.Text); }
@@ -117,7 +117,7 @@ namespace CNPM
             string err = "";
             if (add)
             {
-                if (db.Insert(id, name, age, isMale, address, Lat, Lng, phoneNumber, MyConvert.ImageToByteArray(img), ref err))
+                if (db.Insert(name, age, isMale, address, Lat, Lng, phoneNumber, MyConvert.ImageToByteArray(img), ref err))
                     MessageBox.Show("Đã thêm");
                 else
                     MessageBox.Show("Thêm thất bại: " + err);

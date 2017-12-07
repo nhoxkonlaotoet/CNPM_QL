@@ -53,17 +53,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BL_Layer\BLAccount.cs" />
-    <Compile Include="BL_Layer\BLController.cs" />
+    <Compile Include="BL_Layer\BLTransport.cs" />
     <Compile Include="BL_Layer\BLCustomer.cs" />
     <Compile Include="BL_Layer\BLLogin.cs" />
     <Compile Include="BL_Layer\BLOrder.cs" />
     <Compile Include="BL_Layer\BLProduct.cs" />
     <Compile Include="DB_Layer\DBMain.cs" />
-    <Compile Include="FormController.cs">
+    <Compile Include="FormTranport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormController.Designer.cs">
-      <DependentUpon>FormController.cs</DependentUpon>
+    <Compile Include="FormTranport.Designer.cs">
+      <DependentUpon>FormTranport.cs</DependentUpon>
     </Compile>
     <Compile Include="FormCustomer.cs">
       <SubType>Form</SubType>
@@ -110,8 +110,8 @@
     <Compile Include="MyConvert.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormController.resx">
-      <DependentUpon>FormController.cs</DependentUpon>
+    <EmbeddedResource Include="FormTranport.resx">
+      <DependentUpon>FormTranport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCustomer.resx">
       <DependentUpon>FormCustomer.cs</DependentUpon>

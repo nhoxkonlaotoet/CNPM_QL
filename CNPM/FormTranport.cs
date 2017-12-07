@@ -15,12 +15,12 @@ using GMap.NET.WindowsForms.Markers;
 
 namespace CNPM
 {
-    public partial class FormController : Form
+    public partial class FormTranport : Form
     {
         List<object> lstOrderbyEmp;
         string emp_id;
        
-        public FormController()
+        public FormTranport()
         {
             InitializeComponent();
         }
@@ -38,7 +38,7 @@ namespace CNPM
         }
         void LoadData()
         {
-            BLController db = new BLController();
+            BLTransport db = new BLTransport();
             DataTable dtorder = db.Orders();
             lbOrder.Items.Clear();
             lbEmpOrder.Items.Clear();
@@ -140,9 +140,9 @@ namespace CNPM
         {
             lbOrder.SelectedIndex = -1;
         }
-        void LoadDetail(string orderId)
+        void LoadDetail(int orderId)
         {
-            BLController db = new BLController();
+            BLTransport db = new BLTransport();
             DataTable dtorder = db.GetOrder(orderId);
             if (dtorder.Rows.Count == 0) return;
             txtOrderId.Text = dtorder.Rows[0]["MaDH"].ToString().Trim();
@@ -182,14 +182,7 @@ namespace CNPM
             }
         }
 
-        private void lbOrder_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (lbOrder.SelectedItem != null)
-            {
-                lbEmpOrder.SelectedIndex = -1;
-                LoadDetail(lbOrder.SelectedItem.ToString());
-            }
-        }
+     
         // lấy mã nv đang giữ đơn hàng
         string Emp(string orderId)
         {
@@ -203,13 +196,20 @@ namespace CNPM
             }
             return null;
         }
-
+        private void lbOrder_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lbOrder.SelectedItem != null)
+            {
+                lbEmpOrder.SelectedIndex = -1;
+                LoadDetail(int.Parse(lbOrder.SelectedItem.ToString()));
+            }
+        }
         private void lbEmpOrder_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lbEmpOrder.SelectedItem != null)
             {
                 lbOrder.SelectedIndex = -1;
-                LoadDetail(lbEmpOrder.SelectedItem.ToString());
+                LoadDetail(int.Parse(lbEmpOrder.SelectedItem.ToString()));
             }
         }
 
@@ -224,11 +224,11 @@ namespace CNPM
                 MessageBox.Show("Không có đơn hàng!");
                 return;
             }
-            BLController db = new BLController();
+            BLTransport db = new BLTransport();
             string err = "";
 
             foreach (string order in orders)
-                if (!db.InsertTransport(emp_id, order, DateTime.Now, ref err))
+                if (!db.InsertTransport(int.Parse(emp_id),int.Parse( order), DateTime.Now, ref err))
                 {
                     MessageBox.Show("Giao hàng thất bại: \r\n" + err);
                     return;

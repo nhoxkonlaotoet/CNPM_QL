@@ -27,7 +27,7 @@ namespace CNPM.BL_Layer
         }
         public byte[] Avatar(int customerId)
         {
-            string sqlString = @"select Hinh from KhachHang where MaKH='"+ customerId+"'";
+            string sqlString = @"select Hinh from KhachHang where MaKH="+ customerId;
             return (byte[])db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0].Rows[0]["Hinh"];
         }
         public bool Insert(string name, int age, int isMale, string address, double lat, double lng, string phoneNumber, byte[] image, ref string err)
@@ -41,12 +41,12 @@ namespace CNPM.BL_Layer
         {
 
             string sqlString = "Update KhachHang set HoTen=N'" + name + "',Tuoi= " + age + ",Nam=" + isMale + ",DiaChi= N'" + address + "', Lat= "
-                                + lat + ", Lng=" + lng + ", SoDienThoai='" + phoneNumber + "',Hinh= @Hinh" + id +" where MaKH='"+id+"'" ;
+                                + lat + ", Lng=" + lng + ", SoDienThoai='" + phoneNumber + "',Hinh= @Hinh" + id +" where MaKH="+id;
             return db.MyExecuteNonQuery1(sqlString, "@Hinh" + id, image, CommandType.Text, ref err);
         }
         public bool Delete(int id, ref string err)
         {
-            string sqlString = "Delete from KhachHang where MaKH='" + id + "'";
+            string sqlString = "Delete from KhachHang where MaKH=" + id;
             return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
         }
        
