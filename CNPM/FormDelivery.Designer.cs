@@ -1,6 +1,6 @@
 ﻿namespace CNPM
 {
-    partial class FormTranport
+    partial class FormDelivery
     {
         /// <summary>
         /// Required designer variable.

@@ -69,5 +69,23 @@ namespace CNPM.BL_Layer
             string sqlString = @"Update LoaiSanPham set Hinh=@Hinh where MaLoai=" + typeId;
             return db.MyExecuteNonQuery1(sqlString, "@Hinh", image, CommandType.Text, ref err);
         }
+        public int Total(int typeId)
+        {
+            string sqlString = @"select COUNT(*) as TongSo from SanPham where MaLoai=" + typeId;
+            DataTable dt = db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
+            if (dt != null && dt.Rows.Count > 0)
+                return int.Parse(dt.Rows[0]["TongSo"].ToString());
+            return -1;
+        }
+
+        public int getMetric(int typeId, string status)
+        {
+            string sqlString = @"select COUNT(*) as A from SanPham where TrangThai=N'"+status+"' and MaLoai=" + typeId;
+            DataTable dt = db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
+            if (dt != null && dt.Rows.Count > 0)
+                return int.Parse(dt.Rows[0]["A"].ToString());
+            return -1;
+        }
+     
     }
 }

@@ -13,7 +13,7 @@ namespace CNPM
     public partial class FormOrder : Form
     {
         bool block, blockDetail, add, addDetail;
-
+        int quantity;
         private void dgvOrder_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int r = dgvOrder.CurrentCell.RowIndex;
@@ -45,7 +45,7 @@ namespace CNPM
             int orderId = int.Parse(txtId.Text);
             BLOrder db = new BLOrder();
             dgvDetail.DataSource = db.Detail(orderId);
-
+            dgvDetail_CellClick(null, null);
         }
 
         private void cboCusID_SelectedIndexChanged(object sender, EventArgs e)
@@ -74,6 +74,7 @@ namespace CNPM
         {
             add = true;
             Block = true;
+
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -84,7 +85,24 @@ namespace CNPM
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            int r = dgvOrder.CurrentCell.RowIndex;
+            int id = int.Parse(dgvOrder.Rows[r].Cells["MaDH"].Value.ToString());
+            DialogResult traloi;
+            traloi = MessageBox.Show("Bạn muốn xoá?", "Trả lời",
+            MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
+            string err = null;
+            if (traloi == DialogResult.Yes)
+            {
+                BLOrder db = new BLOrder();
+                if (!db.Delete(id, ref err))
+                {
+                    MessageBox.Show(err);
+                    return;
+                }
+                LoadData();
+                MessageBox.Show("Đã xóa xong!");
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -112,7 +130,11 @@ namespace CNPM
 
             else
             {
-                if (db.Update(id, name, age, isMale, address, Lat, Lng, phoneNumber, MyConvert.ImageToByteArray(img), ref err))
+                int id = int.Parse(txtId.Text);
+                date = txtDate.Text;
+                int cost = int.Parse(txtCost.Text);
+                string status = cboStatus.Text;
+                if (db.Update(id,date,cost, cost,status, ref err))
                     MessageBox.Show("Đã cập nhật");
                 else
                     MessageBox.Show("Cập nhật thất bại: " + err);
@@ -123,12 +145,14 @@ namespace CNPM
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-
+            Block = false;
+            dgvOrder_CellClick(null, null);
         }
 
         private void btnAddDetail_Click(object sender, EventArgs e)
         {
-
+            BlockDetail = true;
+            nudQuantity_ValueChanged(null, null);
         }
 
         private void btnRemoveDetail_Click(object sender, EventArgs e)
@@ -139,22 +163,30 @@ namespace CNPM
         private void dgvDetail_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int r = dgvDetail.CurrentCell.RowIndex;
-            BLOrder db = new BLOrder();
+
             nudQuantity.Value = int.Parse(dgvDetail.Rows[r].Cells["SoLuong"].Value.ToString());
+             
             txtCost.Text = dgvDetail.Rows[r].Cells["ThanhTien"].Value.ToString();
             txtPrice.Text = dgvDetail.Rows[r].Cells["DonGia"].Value.ToString();
             cboTypeName.SelectedValue = dgvDetail.Rows[r].Cells["MaLoai"].Value.ToString();
+      
 
-            DataRowView drv = (DataRowView)cboTypeName.SelectedItem;
-            int typeId = int.Parse(drv.Row.ItemArray[1].ToString());
-            txtAvailable.Text = db.Available(typeId).ToString();
         }
 
         private void cboTypeName_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            BLOrder db = new BLOrder();
+            DataRowView drv = (DataRowView)cboTypeName.SelectedItem;
+            int typeId = int.Parse(drv.Row.ItemArray[1].ToString());
+            int available = db.Available(typeId);
+            txtPrice.Text = db.Price(typeId).ToString();
+            txtAvailable.Text = available.ToString();
+            if (available == 0)
+                nudQuantity.Value = 0;
+            else
+                nudQuantity.Value = 1;
         }
-
+      
         private void cbIsTransported_CheckedChanged(object sender, EventArgs e)
         {
             if (cbIsTransported.Checked)
@@ -170,6 +202,19 @@ namespace CNPM
                 cboEmpID.Hide();
                 lblEmpName.Hide();
                 txtEmpName.Hide();
+            }
+        }
+
+        private void nudQuantity_ValueChanged(object sender, EventArgs e)
+        {
+            if (addDetail)
+            {
+                if (int.Parse(txtAvailable.Text) < nudQuantity.Value)
+                {
+                    nudQuantity.Value = int.Parse(txtAvailable.Text);
+                    return;
+                }
+                txtCost.Text = (int.Parse(txtPrice.Text) * nudQuantity.Value).ToString();
             }
         }
 
@@ -190,6 +235,45 @@ namespace CNPM
             Block = false;
         }
 
+        private void btnSaveDetail_Click(object sender, EventArgs e)
+        {
+            BLOrder db = new BLOrder();
+            string err = "";
+            int orderId = int.Parse(txtId.Text);
+            int quantity = (int)nudQuantity.Value;
+            if(quantity==0)
+            {
+                MessageBox.Show("Số lượng phải lớn hơn 0");
+                return;
+            }
+            DataRowView drv = (DataRowView)cboTypeName.SelectedItem;
+            int typeId = int.Parse(drv.Row.ItemArray[1].ToString());
+            for (int i=0;i<quantity;i++)
+            {
+                int productId = new BLOrder().AvailProductId(typeId);
+                MessageBox.Show(productId + "");
+                if (productId != -1)
+                {
+                    if (!db.InsertDetail(orderId, productId, int.Parse(txtPrice.Text), ref err))
+                    {
+                        MessageBox.Show(err);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Thêm được " + i + "/" + quantity + " sản phẩm");
+                    return;
+                }
+            }
+            BlockDetail = false;
+            MessageBox.Show("Thêm thành công");
+        }
+
+        private void btnCancelDetail_Click(object sender, EventArgs e)
+        {
+            dgvDetail_CellClick(null, null);
+            BlockDetail = false;
+        }
 
         public bool Block
         {
@@ -205,7 +289,14 @@ namespace CNPM
                 {
                     pnlInfor.Enabled = true;
                     if (add)
+                    {
                         txtId.ResetText();
+                        txtDate.Text = DateTime.Now.ToString();
+                        cboStatus.SelectedIndex = cboStatus.FindString("Đã gửi");
+                        cbIsTransported.Checked = false;
+                        cbIsTransported.Enabled = true;
+                        cboEmpID.Enabled = true;
+                    }
                     txtId.Enabled = false;
                     btnAdd.Enabled = false;
                     btnEdit.Enabled = false;
@@ -235,6 +326,7 @@ namespace CNPM
                 blockDetail = value;
                 if (blockDetail)
                 {
+                    addDetail = true;
                     btnAddDetail.Enabled = false;
                     btnRemoveDetail.Enabled = false;
                     pic.Enabled = true;
@@ -249,6 +341,7 @@ namespace CNPM
                 }
                 else
                 {
+                    addDetail = false;
                     btnAddDetail.Enabled = true;
                     btnRemoveDetail.Enabled = true;
                     pic.Enabled = false;
@@ -262,5 +355,9 @@ namespace CNPM
                 }
             }
         }
+
+   
+
+       
     }
 }

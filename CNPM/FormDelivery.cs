@@ -15,12 +15,12 @@ using GMap.NET.WindowsForms.Markers;
 
 namespace CNPM
 {
-    public partial class FormTranport : Form
+    public partial class FormDelivery : Form
     {
         List<object> lstOrderbyEmp;
         string emp_id;
        
-        public FormTranport()
+        public FormDelivery()
         {
             InitializeComponent();
         }
@@ -38,7 +38,7 @@ namespace CNPM
         }
         void LoadData()
         {
-            BLTransport db = new BLTransport();
+            BLDelivery db = new BLDelivery();
             DataTable dtorder = db.Orders();
             lbOrder.Items.Clear();
             lbEmpOrder.Items.Clear();
@@ -142,7 +142,7 @@ namespace CNPM
         }
         void LoadDetail(int orderId)
         {
-            BLTransport db = new BLTransport();
+            BLDelivery db = new BLDelivery();
             DataTable dtorder = db.GetOrder(orderId);
             if (dtorder.Rows.Count == 0) return;
             txtOrderId.Text = dtorder.Rows[0]["MaDH"].ToString().Trim();
@@ -224,7 +224,7 @@ namespace CNPM
                 MessageBox.Show("Không có đơn hàng!");
                 return;
             }
-            BLTransport db = new BLTransport();
+            BLDelivery db = new BLDelivery();
             string err = "";
 
             foreach (string order in orders)

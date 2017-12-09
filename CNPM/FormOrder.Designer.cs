@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label7 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dgvOrder = new System.Windows.Forms.DataGridView();
@@ -40,6 +40,7 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.pnlInfor = new System.Windows.Forms.Panel();
+            this.cbIsTransported = new System.Windows.Forms.CheckBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -53,6 +54,7 @@
             this.lblEmpID = new System.Windows.Forms.Label();
             this.lblEmpName = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -60,29 +62,27 @@
             this.btnSaveDetail = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.nudQuantity = new System.Windows.Forms.NumericUpDown();
             this.pic = new System.Windows.Forms.PictureBox();
             this.dgvDetail = new System.Windows.Forms.DataGridView();
             this.btnCancelDetail = new System.Windows.Forms.Button();
             this.btnRemoveDetail = new System.Windows.Forms.Button();
             this.btnAddDetail = new System.Windows.Forms.Button();
             this.cboTypeName = new System.Windows.Forms.ComboBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtPrice = new System.Windows.Forms.TextBox();
-            this.nudQuantity = new System.Windows.Forms.NumericUpDown();
-            this.label15 = new System.Windows.Forms.Label();
-            this.txtAvailable = new System.Windows.Forms.TextBox();
-            this.txtCost = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.cbIsTransported = new System.Windows.Forms.CheckBox();
-            this.label16 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtCost = new System.Windows.Forms.TextBox();
+            this.txtPrice = new System.Windows.Forms.TextBox();
+            this.txtAvailable = new System.Windows.Forms.TextBox();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrder)).BeginInit();
             this.pnlInfor.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudQuantity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudQuantity)).BeginInit();
             this.SuspendLayout();
             // 
             // label7
@@ -117,14 +117,14 @@
             this.dgvOrder.AllowUserToDeleteRows = false;
             this.dgvOrder.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvOrder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvOrder.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvOrder.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvOrder.Location = new System.Drawing.Point(3, 102);
             this.dgvOrder.Name = "dgvOrder";
             this.dgvOrder.ReadOnly = true;
@@ -220,6 +220,18 @@
             this.pnlInfor.Name = "pnlInfor";
             this.pnlInfor.Size = new System.Drawing.Size(844, 256);
             this.pnlInfor.TabIndex = 5;
+            // 
+            // cbIsTransported
+            // 
+            this.cbIsTransported.AutoSize = true;
+            this.cbIsTransported.Checked = true;
+            this.cbIsTransported.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbIsTransported.Location = new System.Drawing.Point(409, 118);
+            this.cbIsTransported.Name = "cbIsTransported";
+            this.cbIsTransported.Size = new System.Drawing.Size(15, 14);
+            this.cbIsTransported.TabIndex = 6;
+            this.cbIsTransported.UseVisualStyleBackColor = true;
+            this.cbIsTransported.CheckedChanged += new System.EventHandler(this.cbIsTransported_CheckedChanged);
             // 
             // btnCancel
             // 
@@ -363,6 +375,16 @@
             this.label13.TabIndex = 1;
             this.label13.Text = "Tên khách: ";
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(317, 112);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(88, 21);
+            this.label16.TabIndex = 1;
+            this.label16.Text = "Giao hàng: ";
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -412,6 +434,7 @@
             this.btnSaveDetail.TabIndex = 5;
             this.btnSaveDetail.Text = "Lưu";
             this.btnSaveDetail.UseVisualStyleBackColor = true;
+            this.btnSaveDetail.Click += new System.EventHandler(this.btnSaveDetail_Click);
             // 
             // label8
             // 
@@ -449,6 +472,16 @@
             this.panel1.Size = new System.Drawing.Size(486, 606);
             this.panel1.TabIndex = 6;
             // 
+            // nudQuantity
+            // 
+            this.nudQuantity.BackColor = System.Drawing.Color.White;
+            this.nudQuantity.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudQuantity.Location = new System.Drawing.Point(281, 128);
+            this.nudQuantity.Name = "nudQuantity";
+            this.nudQuantity.Size = new System.Drawing.Size(97, 29);
+            this.nudQuantity.TabIndex = 8;
+            this.nudQuantity.ValueChanged += new System.EventHandler(this.nudQuantity_ValueChanged);
+            // 
             // pic
             // 
             this.pic.BackColor = System.Drawing.Color.White;
@@ -464,14 +497,14 @@
             this.dgvDetail.AllowUserToDeleteRows = false;
             this.dgvDetail.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDetail.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDetail.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvDetail.Location = new System.Drawing.Point(3, 364);
             this.dgvDetail.Name = "dgvDetail";
             this.dgvDetail.ReadOnly = true;
@@ -489,6 +522,7 @@
             this.btnCancelDetail.TabIndex = 5;
             this.btnCancelDetail.Text = "Hủy";
             this.btnCancelDetail.UseVisualStyleBackColor = true;
+            this.btnCancelDetail.Click += new System.EventHandler(this.btnCancelDetail_Click);
             // 
             // btnRemoveDetail
             // 
@@ -525,6 +559,16 @@
             this.cboTypeName.TabIndex = 3;
             this.cboTypeName.SelectedIndexChanged += new System.EventHandler(this.cboTypeName_SelectedIndexChanged);
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(186, 254);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(90, 21);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "Thành tiền: ";
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -534,34 +578,6 @@
             this.label11.Size = new System.Drawing.Size(72, 21);
             this.label11.TabIndex = 1;
             this.label11.Text = "Đơn giá: ";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(186, 130);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(80, 21);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "Số lượng: ";
-            // 
-            // txtPrice
-            // 
-            this.txtPrice.BackColor = System.Drawing.Color.White;
-            this.txtPrice.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrice.Location = new System.Drawing.Point(281, 208);
-            this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(178, 29);
-            this.txtPrice.TabIndex = 2;
-            // 
-            // nudQuantity
-            // 
-            this.nudQuantity.BackColor = System.Drawing.Color.White;
-            this.nudQuantity.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudQuantity.Location = new System.Drawing.Point(281, 128);
-            this.nudQuantity.Name = "nudQuantity";
-            this.nudQuantity.Size = new System.Drawing.Size(97, 29);
-            this.nudQuantity.TabIndex = 8;
             // 
             // label15
             // 
@@ -573,14 +589,15 @@
             this.label15.TabIndex = 1;
             this.label15.Text = "Kho còn: ";
             // 
-            // txtAvailable
+            // label9
             // 
-            this.txtAvailable.BackColor = System.Drawing.Color.White;
-            this.txtAvailable.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAvailable.Location = new System.Drawing.Point(281, 169);
-            this.txtAvailable.Name = "txtAvailable";
-            this.txtAvailable.Size = new System.Drawing.Size(97, 29);
-            this.txtAvailable.TabIndex = 2;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(186, 130);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(80, 21);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "Số lượng: ";
             // 
             // txtCost
             // 
@@ -591,37 +608,24 @@
             this.txtCost.Size = new System.Drawing.Size(178, 29);
             this.txtCost.TabIndex = 2;
             // 
-            // label10
+            // txtPrice
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(186, 254);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(90, 21);
-            this.label10.TabIndex = 1;
-            this.label10.Text = "Thành tiền: ";
+            this.txtPrice.BackColor = System.Drawing.Color.White;
+            this.txtPrice.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrice.Location = new System.Drawing.Point(281, 208);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(178, 29);
+            this.txtPrice.TabIndex = 2;
+            this.txtPrice.TextChanged += new System.EventHandler(this.nudQuantity_ValueChanged);
             // 
-            // cbIsTransported
+            // txtAvailable
             // 
-            this.cbIsTransported.AutoSize = true;
-            this.cbIsTransported.Checked = true;
-            this.cbIsTransported.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbIsTransported.Location = new System.Drawing.Point(409, 118);
-            this.cbIsTransported.Name = "cbIsTransported";
-            this.cbIsTransported.Size = new System.Drawing.Size(15, 14);
-            this.cbIsTransported.TabIndex = 6;
-            this.cbIsTransported.UseVisualStyleBackColor = true;
-            this.cbIsTransported.CheckedChanged += new System.EventHandler(this.cbIsTransported_CheckedChanged);
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(317, 112);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(88, 21);
-            this.label16.TabIndex = 1;
-            this.label16.Text = "Giao hàng: ";
+            this.txtAvailable.BackColor = System.Drawing.Color.White;
+            this.txtAvailable.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAvailable.Location = new System.Drawing.Point(281, 169);
+            this.txtAvailable.Name = "txtAvailable";
+            this.txtAvailable.Size = new System.Drawing.Size(97, 29);
+            this.txtAvailable.TabIndex = 2;
             // 
             // FormOrder
             // 
@@ -642,9 +646,9 @@
             this.pnlInfor.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudQuantity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudQuantity)).EndInit();
             this.ResumeLayout(false);
 
         }

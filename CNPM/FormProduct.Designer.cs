@@ -30,6 +30,19 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlTypeInfo = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtBroken = new System.Windows.Forms.TextBox();
+            this.txtCusHolding = new System.Windows.Forms.TextBox();
+            this.txtSold = new System.Windows.Forms.TextBox();
+            this.txtBeDelivered = new System.Windows.Forms.TextBox();
+            this.txtInStock = new System.Windows.Forms.TextBox();
+            this.txtTotal = new System.Windows.Forms.TextBox();
             this.pic = new System.Windows.Forms.PictureBox();
             this.btnCancelType = new System.Windows.Forms.Button();
             this.btnDeleteType = new System.Windows.Forms.Button();
@@ -46,6 +59,8 @@
             this.txtTypeName = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.pnlInfor = new System.Windows.Forms.Panel();
+            this.txtQuantity = new System.Windows.Forms.TextBox();
+            this.lblQuantity = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -58,7 +73,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblId = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dgvProduct = new System.Windows.Forms.DataGridView();
             this.btnSearch = new System.Windows.Forms.Button();
@@ -69,6 +84,7 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.pnlTypeInfo.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic)).BeginInit();
             this.pnlInfor.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -79,6 +95,7 @@
             // 
             this.pnlTypeInfo.BackColor = System.Drawing.Color.WhiteSmoke;
             this.pnlTypeInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlTypeInfo.Controls.Add(this.panel1);
             this.pnlTypeInfo.Controls.Add(this.pic);
             this.pnlTypeInfo.Controls.Add(this.btnCancelType);
             this.pnlTypeInfo.Controls.Add(this.btnDeleteType);
@@ -98,6 +115,139 @@
             this.pnlTypeInfo.Name = "pnlTypeInfo";
             this.pnlTypeInfo.Size = new System.Drawing.Size(552, 606);
             this.pnlTypeInfo.TabIndex = 0;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label16);
+            this.panel1.Controls.Add(this.label18);
+            this.panel1.Controls.Add(this.label19);
+            this.panel1.Controls.Add(this.label17);
+            this.panel1.Controls.Add(this.label14);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.txtBroken);
+            this.panel1.Controls.Add(this.txtCusHolding);
+            this.panel1.Controls.Add(this.txtSold);
+            this.panel1.Controls.Add(this.txtBeDelivered);
+            this.panel1.Controls.Add(this.txtInStock);
+            this.panel1.Controls.Add(this.txtTotal);
+            this.panel1.Location = new System.Drawing.Point(3, 409);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(543, 192);
+            this.panel1.TabIndex = 15;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(14, 105);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(48, 21);
+            this.label16.TabIndex = 22;
+            this.label16.Text = "Hỏng";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(262, 105);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(124, 21);
+            this.label18.TabIndex = 22;
+            this.label18.Text = "Khách đang giữ: ";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(262, 17);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(77, 21);
+            this.label19.TabIndex = 22;
+            this.label19.Text = "Sắp giao: ";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(262, 60);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(66, 21);
+            this.label17.TabIndex = 22;
+            this.label17.Text = "Đã bán: ";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(14, 60);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(73, 21);
+            this.label14.TabIndex = 22;
+            this.label14.Text = "Kho còn: ";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(14, 17);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 21);
+            this.label1.TabIndex = 22;
+            this.label1.Text = "Tổng số: ";
+            // 
+            // txtBroken
+            // 
+            this.txtBroken.BackColor = System.Drawing.Color.White;
+            this.txtBroken.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBroken.Location = new System.Drawing.Point(106, 102);
+            this.txtBroken.Name = "txtBroken";
+            this.txtBroken.Size = new System.Drawing.Size(113, 29);
+            this.txtBroken.TabIndex = 23;
+            // 
+            // txtCusHolding
+            // 
+            this.txtCusHolding.BackColor = System.Drawing.Color.White;
+            this.txtCusHolding.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCusHolding.Location = new System.Drawing.Point(392, 102);
+            this.txtCusHolding.Name = "txtCusHolding";
+            this.txtCusHolding.Size = new System.Drawing.Size(113, 29);
+            this.txtCusHolding.TabIndex = 23;
+            // 
+            // txtSold
+            // 
+            this.txtSold.BackColor = System.Drawing.Color.White;
+            this.txtSold.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSold.Location = new System.Drawing.Point(392, 57);
+            this.txtSold.Name = "txtSold";
+            this.txtSold.Size = new System.Drawing.Size(113, 29);
+            this.txtSold.TabIndex = 23;
+            // 
+            // txtBeDelivered
+            // 
+            this.txtBeDelivered.BackColor = System.Drawing.Color.White;
+            this.txtBeDelivered.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBeDelivered.Location = new System.Drawing.Point(392, 13);
+            this.txtBeDelivered.Name = "txtBeDelivered";
+            this.txtBeDelivered.Size = new System.Drawing.Size(113, 29);
+            this.txtBeDelivered.TabIndex = 23;
+            // 
+            // txtInStock
+            // 
+            this.txtInStock.BackColor = System.Drawing.Color.White;
+            this.txtInStock.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtInStock.Location = new System.Drawing.Point(106, 57);
+            this.txtInStock.Name = "txtInStock";
+            this.txtInStock.Size = new System.Drawing.Size(113, 29);
+            this.txtInStock.TabIndex = 23;
+            // 
+            // txtTotal
+            // 
+            this.txtTotal.BackColor = System.Drawing.Color.White;
+            this.txtTotal.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotal.Location = new System.Drawing.Point(106, 13);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.Size = new System.Drawing.Size(113, 29);
+            this.txtTotal.TabIndex = 23;
             // 
             // pic
             // 
@@ -250,14 +400,16 @@
             this.label8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(232, 113);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(86, 21);
+            this.label8.Size = new System.Drawing.Size(78, 21);
             this.label8.TabIndex = 1;
-            this.label8.Text = "Mã loại SP:";
+            this.label8.Text = "Mã hàng: ";
             // 
             // pnlInfor
             // 
             this.pnlInfor.BackColor = System.Drawing.Color.WhiteSmoke;
             this.pnlInfor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlInfor.Controls.Add(this.txtQuantity);
+            this.pnlInfor.Controls.Add(this.lblQuantity);
             this.pnlInfor.Controls.Add(this.btnCancel);
             this.pnlInfor.Controls.Add(this.btnSave);
             this.pnlInfor.Controls.Add(this.label6);
@@ -270,11 +422,32 @@
             this.pnlInfor.Controls.Add(this.label4);
             this.pnlInfor.Controls.Add(this.label3);
             this.pnlInfor.Controls.Add(this.label2);
-            this.pnlInfor.Controls.Add(this.label1);
+            this.pnlInfor.Controls.Add(this.lblId);
             this.pnlInfor.Location = new System.Drawing.Point(12, 12);
             this.pnlInfor.Name = "pnlInfor";
             this.pnlInfor.Size = new System.Drawing.Size(778, 256);
             this.pnlInfor.TabIndex = 0;
+            // 
+            // txtQuantity
+            // 
+            this.txtQuantity.BackColor = System.Drawing.Color.White;
+            this.txtQuantity.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtQuantity.Location = new System.Drawing.Point(616, 87);
+            this.txtQuantity.Name = "txtQuantity";
+            this.txtQuantity.Size = new System.Drawing.Size(133, 29);
+            this.txtQuantity.TabIndex = 14;
+            this.txtQuantity.TextChanged += new System.EventHandler(this.txtQuantity_TextChanged);
+            this.txtQuantity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtQuantity_KeyDown);
+            // 
+            // lblQuantity
+            // 
+            this.lblQuantity.AutoSize = true;
+            this.lblQuantity.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuantity.Location = new System.Drawing.Point(530, 90);
+            this.lblQuantity.Name = "lblQuantity";
+            this.lblQuantity.Size = new System.Drawing.Size(80, 21);
+            this.lblQuantity.TabIndex = 13;
+            this.lblQuantity.Text = "Số lượng: ";
             // 
             // btnCancel
             // 
@@ -317,10 +490,10 @@
             this.cboStatus.FormattingEnabled = true;
             this.cboStatus.Items.AddRange(new object[] {
             "Còn",
-            "Đã đặt",
+            "Đã đặt hàng",
             "Đã bán",
             "Hỏng"});
-            this.cboStatus.Location = new System.Drawing.Point(636, 141);
+            this.cboStatus.Location = new System.Drawing.Point(619, 141);
             this.cboStatus.Name = "cboStatus";
             this.cboStatus.Size = new System.Drawing.Size(130, 29);
             this.cboStatus.TabIndex = 10;
@@ -332,7 +505,7 @@
             this.cboTypeId.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboTypeId.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTypeId.FormattingEnabled = true;
-            this.cboTypeId.Location = new System.Drawing.Point(411, 87);
+            this.cboTypeId.Location = new System.Drawing.Point(369, 87);
             this.cboTypeId.Name = "cboTypeId";
             this.cboTypeId.Size = new System.Drawing.Size(126, 29);
             this.cboTypeId.TabIndex = 7;
@@ -342,7 +515,7 @@
             // 
             this.txtExpireDate.BackColor = System.Drawing.Color.White;
             this.txtExpireDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtExpireDate.Location = new System.Drawing.Point(411, 141);
+            this.txtExpireDate.Location = new System.Drawing.Point(369, 141);
             this.txtExpireDate.Name = "txtExpireDate";
             this.txtExpireDate.Size = new System.Drawing.Size(126, 29);
             this.txtExpireDate.TabIndex = 9;
@@ -369,7 +542,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(543, 144);
+            this.label5.Location = new System.Drawing.Point(526, 144);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(87, 21);
             this.label5.TabIndex = 1;
@@ -391,9 +564,9 @@
             this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(265, 90);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(140, 21);
+            this.label3.Size = new System.Drawing.Size(78, 21);
             this.label3.TabIndex = 1;
-            this.label3.Text = "Mã loại sản phẩm: ";
+            this.label3.Text = "Mã hàng: ";
             // 
             // label2
             // 
@@ -405,15 +578,15 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Ngày sản xuất: ";
             // 
-            // label1
+            // lblId
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(16, 90);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(111, 21);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Mã sản phẩm: ";
+            this.lblId.AutoSize = true;
+            this.lblId.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblId.Location = new System.Drawing.Point(16, 90);
+            this.lblId.Name = "lblId";
+            this.lblId.Size = new System.Drawing.Size(111, 21);
+            this.lblId.TabIndex = 1;
+            this.lblId.Text = "Mã sản phẩm: ";
             // 
             // panel3
             // 
@@ -535,6 +708,8 @@
             this.Load += new System.EventHandler(this.FormProduct_Load);
             this.pnlTypeInfo.ResumeLayout(false);
             this.pnlTypeInfo.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic)).EndInit();
             this.pnlInfor.ResumeLayout(false);
             this.pnlInfor.PerformLayout();
@@ -559,7 +734,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblId;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
@@ -586,5 +761,20 @@
         private System.Windows.Forms.Button btnAddType;
         private System.Windows.Forms.PictureBox pic;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.TextBox txtQuantity;
+        private System.Windows.Forms.Label lblQuantity;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtTotal;
+        private System.Windows.Forms.TextBox txtBroken;
+        private System.Windows.Forms.TextBox txtCusHolding;
+        private System.Windows.Forms.TextBox txtSold;
+        private System.Windows.Forms.TextBox txtBeDelivered;
+        private System.Windows.Forms.TextBox txtInStock;
     }
 }

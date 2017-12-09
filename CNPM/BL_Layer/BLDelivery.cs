@@ -8,10 +8,10 @@ using System.Data;
 
 namespace CNPM.BL_Layer
 {
-    public class BLTransport
+    public class BLDelivery
     {
         DBMain db;
-        public BLTransport()
+        public BLDelivery()
         {
             db = new DBMain();
         }

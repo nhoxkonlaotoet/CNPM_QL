@@ -15,8 +15,12 @@ namespace CNPM
 
         const string CONTROLLER = "Controller",
                         PRODUCT = "Product",
-                        CUSTOMER = "Customer", 
-                        ORDER = "Order";
+                        CUSTOMER = "Customer",
+                        EMPLOYEE = "Employee",
+                        ORDER = "Order",
+                        INVOICE = "Invoice",
+                        SALARY= "Salary",
+                        ACCOUNT = "Account";
         public FormFrame()
         {
             InitializeComponent();
@@ -37,6 +41,10 @@ namespace CNPM
             btnProduct.Tag = PRODUCT;
             btnCustomer.Tag = CUSTOMER;
             btnOrder.Tag = ORDER;
+            btnEmployee.Tag = EMPLOYEE;
+            btnInvoice.Tag = INVOICE;
+            btnSalary.Tag = SALARY;
+            btnAccount.Tag = ACCOUNT;
         }
         private void btnMenu_Click(object sender, EventArgs e)
         {
@@ -46,7 +54,7 @@ namespace CNPM
             switch (btn.Tag.ToString())
             {
                 case CONTROLLER:
-                    FormTranport fc = new FormTranport();
+                    FormDelivery fc = new FormDelivery();
                     fc.MdiParent = this;
                     fc.Dock = DockStyle.Fill;
                     fc.Show();

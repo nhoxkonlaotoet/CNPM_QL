@@ -117,6 +117,22 @@ namespace CNPM.BL_Layer
                     return int.Parse(dt.Rows[0]["ConLai"].ToString());
             return -1;
         }
+        public int Price(int TypeId)
+        {
+            string sqlString = @"select Gia from LoaiSanPham where MaLoai=" + TypeId;
+            DataTable dt = db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
+            if (dt != null && dt.Rows.Count > 0)
+                return int.Parse(dt.Rows[0]["Gia"].ToString());
+            return -1;
+        }
+        public int AvailProductId(int TypeId)
+        {
+            string sqlString = @"select top 1 MaSP from SanPham where TrangThai=N'Còn' and MaLoai=" + TypeId;
+            DataTable dt = db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
+            if (dt != null && dt.Rows.Count > 0)
+                return int.Parse(dt.Rows[0]["MaSP"].ToString());
+            return -1;
+        }
         
     }
 }
