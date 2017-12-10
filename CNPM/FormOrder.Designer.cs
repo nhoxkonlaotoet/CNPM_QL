@@ -28,11 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label7 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dgvOrder = new System.Windows.Forms.DataGridView();
+            this.MaDH = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ThoiDiemDatHang = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TongSoTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaKH = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TrangThai = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
@@ -40,7 +45,7 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.pnlInfor = new System.Windows.Forms.Panel();
-            this.cbIsTransported = new System.Windows.Forms.CheckBox();
+            this.cbIsDelivered = new System.Windows.Forms.CheckBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -65,6 +70,11 @@
             this.nudQuantity = new System.Windows.Forms.NumericUpDown();
             this.pic = new System.Windows.Forms.PictureBox();
             this.dgvDetail = new System.Windows.Forms.DataGridView();
+            this.MaLoai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenLoai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DonGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ThanhTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnCancelDetail = new System.Windows.Forms.Button();
             this.btnRemoveDetail = new System.Windows.Forms.Button();
             this.btnAddDetail = new System.Windows.Forms.Button();
@@ -76,6 +86,7 @@
             this.txtCost = new System.Windows.Forms.TextBox();
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.txtAvailable = new System.Windows.Forms.TextBox();
+            this.btnReload = new System.Windows.Forms.Button();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrder)).BeginInit();
             this.pnlInfor.SuspendLayout();
@@ -99,6 +110,7 @@
             // 
             this.panel3.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.btnReload);
             this.panel3.Controls.Add(this.dgvOrder);
             this.panel3.Controls.Add(this.btnSearch);
             this.panel3.Controls.Add(this.btnDelete);
@@ -115,23 +127,67 @@
             // 
             this.dgvOrder.AllowUserToAddRows = false;
             this.dgvOrder.AllowUserToDeleteRows = false;
+            this.dgvOrder.AllowUserToResizeColumns = false;
+            this.dgvOrder.AllowUserToResizeRows = false;
             this.dgvOrder.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvOrder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvOrder.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvOrder.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.MaDH,
+            this.ThoiDiemDatHang,
+            this.TongSoTien,
+            this.MaKH,
+            this.TrangThai});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvOrder.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvOrder.Location = new System.Drawing.Point(3, 102);
             this.dgvOrder.Name = "dgvOrder";
             this.dgvOrder.ReadOnly = true;
             this.dgvOrder.RowHeadersVisible = false;
+            this.dgvOrder.RowTemplate.Height = 30;
             this.dgvOrder.Size = new System.Drawing.Size(836, 189);
             this.dgvOrder.TabIndex = 6;
             this.dgvOrder.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrder_CellClick);
+            // 
+            // MaDH
+            // 
+            this.MaDH.DataPropertyName = "MaDH";
+            this.MaDH.HeaderText = "Mã đơn hàng";
+            this.MaDH.Name = "MaDH";
+            this.MaDH.ReadOnly = true;
+            // 
+            // ThoiDiemDatHang
+            // 
+            this.ThoiDiemDatHang.DataPropertyName = "ThoiDiemDatHang";
+            this.ThoiDiemDatHang.HeaderText = "Thời điểm đặt hàng";
+            this.ThoiDiemDatHang.Name = "ThoiDiemDatHang";
+            this.ThoiDiemDatHang.ReadOnly = true;
+            // 
+            // TongSoTien
+            // 
+            this.TongSoTien.DataPropertyName = "TongSoTien";
+            this.TongSoTien.HeaderText = "Tổng số tiền";
+            this.TongSoTien.Name = "TongSoTien";
+            this.TongSoTien.ReadOnly = true;
+            // 
+            // MaKH
+            // 
+            this.MaKH.DataPropertyName = "MaKH";
+            this.MaKH.HeaderText = "Mã khách";
+            this.MaKH.Name = "MaKH";
+            this.MaKH.ReadOnly = true;
+            // 
+            // TrangThai
+            // 
+            this.TrangThai.DataPropertyName = "TrangThai";
+            this.TrangThai.HeaderText = "Trạng thái";
+            this.TrangThai.Name = "TrangThai";
+            this.TrangThai.ReadOnly = true;
             // 
             // btnSearch
             // 
@@ -197,7 +253,7 @@
             // 
             this.pnlInfor.BackColor = System.Drawing.Color.WhiteSmoke;
             this.pnlInfor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlInfor.Controls.Add(this.cbIsTransported);
+            this.pnlInfor.Controls.Add(this.cbIsDelivered);
             this.pnlInfor.Controls.Add(this.btnCancel);
             this.pnlInfor.Controls.Add(this.btnSave);
             this.pnlInfor.Controls.Add(this.label6);
@@ -221,17 +277,17 @@
             this.pnlInfor.Size = new System.Drawing.Size(844, 256);
             this.pnlInfor.TabIndex = 5;
             // 
-            // cbIsTransported
+            // cbIsDelivered
             // 
-            this.cbIsTransported.AutoSize = true;
-            this.cbIsTransported.Checked = true;
-            this.cbIsTransported.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbIsTransported.Location = new System.Drawing.Point(409, 118);
-            this.cbIsTransported.Name = "cbIsTransported";
-            this.cbIsTransported.Size = new System.Drawing.Size(15, 14);
-            this.cbIsTransported.TabIndex = 6;
-            this.cbIsTransported.UseVisualStyleBackColor = true;
-            this.cbIsTransported.CheckedChanged += new System.EventHandler(this.cbIsTransported_CheckedChanged);
+            this.cbIsDelivered.AutoSize = true;
+            this.cbIsDelivered.Checked = true;
+            this.cbIsDelivered.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbIsDelivered.Location = new System.Drawing.Point(409, 118);
+            this.cbIsDelivered.Name = "cbIsDelivered";
+            this.cbIsDelivered.Size = new System.Drawing.Size(15, 14);
+            this.cbIsDelivered.TabIndex = 6;
+            this.cbIsDelivered.UseVisualStyleBackColor = true;
+            this.cbIsDelivered.CheckedChanged += new System.EventHandler(this.cbIsTransported_CheckedChanged);
             // 
             // btnCancel
             // 
@@ -495,23 +551,72 @@
             // 
             this.dgvDetail.AllowUserToAddRows = false;
             this.dgvDetail.AllowUserToDeleteRows = false;
+            this.dgvDetail.AllowUserToResizeColumns = false;
+            this.dgvDetail.AllowUserToResizeRows = false;
             this.dgvDetail.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDetail.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvDetail.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.MaLoai,
+            this.TenLoai,
+            this.SoLuong,
+            this.DonGia,
+            this.ThanhTien});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDetail.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvDetail.Location = new System.Drawing.Point(3, 364);
             this.dgvDetail.Name = "dgvDetail";
             this.dgvDetail.ReadOnly = true;
             this.dgvDetail.RowHeadersVisible = false;
+            this.dgvDetail.RowTemplate.Height = 30;
             this.dgvDetail.Size = new System.Drawing.Size(478, 189);
             this.dgvDetail.TabIndex = 6;
             this.dgvDetail.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetail_CellClick);
+            // 
+            // MaLoai
+            // 
+            this.MaLoai.DataPropertyName = "MaLoai";
+            this.MaLoai.FillWeight = 20F;
+            this.MaLoai.HeaderText = "Mã loại";
+            this.MaLoai.Name = "MaLoai";
+            this.MaLoai.ReadOnly = true;
+            // 
+            // TenLoai
+            // 
+            this.TenLoai.DataPropertyName = "TenLoai";
+            this.TenLoai.FillWeight = 60F;
+            this.TenLoai.HeaderText = "Tên loại";
+            this.TenLoai.Name = "TenLoai";
+            this.TenLoai.ReadOnly = true;
+            // 
+            // SoLuong
+            // 
+            this.SoLuong.DataPropertyName = "SoLuong";
+            this.SoLuong.FillWeight = 20F;
+            this.SoLuong.HeaderText = "Số lượng";
+            this.SoLuong.Name = "SoLuong";
+            this.SoLuong.ReadOnly = true;
+            // 
+            // DonGia
+            // 
+            this.DonGia.DataPropertyName = "DonGia";
+            this.DonGia.FillWeight = 30F;
+            this.DonGia.HeaderText = "Đơn giá";
+            this.DonGia.Name = "DonGia";
+            this.DonGia.ReadOnly = true;
+            // 
+            // ThanhTien
+            // 
+            this.ThanhTien.DataPropertyName = "ThanhTien";
+            this.ThanhTien.FillWeight = 40F;
+            this.ThanhTien.HeaderText = "Thành tiền";
+            this.ThanhTien.Name = "ThanhTien";
+            this.ThanhTien.ReadOnly = true;
             // 
             // btnCancelDetail
             // 
@@ -627,6 +732,16 @@
             this.txtAvailable.Size = new System.Drawing.Size(97, 29);
             this.txtAvailable.TabIndex = 2;
             // 
+            // btnReload
+            // 
+            this.btnReload.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReload.Location = new System.Drawing.Point(789, 63);
+            this.btnReload.Name = "btnReload";
+            this.btnReload.Size = new System.Drawing.Size(35, 35);
+            this.btnReload.TabIndex = 7;
+            this.btnReload.UseVisualStyleBackColor = true;
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
+            // 
             // FormOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -699,7 +814,18 @@
         private System.Windows.Forms.TextBox txtAvailable;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtCost;
-        private System.Windows.Forms.CheckBox cbIsTransported;
+        private System.Windows.Forms.CheckBox cbIsDelivered;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaLoai;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenLoai;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SoLuong;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DonGia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ThanhTien;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaDH;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ThoiDiemDatHang;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TongSoTien;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaKH;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TrangThai;
+        private System.Windows.Forms.Button btnReload;
     }
 }

@@ -12,9 +12,10 @@ namespace CNPM
 {
     public partial class FormProduct : Form
     {
+        const int DEFAULTNUMBER = 1, MAXLENGTH = 4;
         bool block, blockType, add, addType;
-        string quantity;
-       
+        int quantity;
+
 
         public FormProduct()
         {
@@ -67,7 +68,7 @@ namespace CNPM
             txtExpireDate.Text = ((DateTime)dgvProduct.Rows[r].Cells["HanSuDung"].Value).ToString("MM/dd/yyyy");
             cboStatus.SelectedIndex = cboStatus.FindString(dgvProduct.Rows[r].Cells["TrangThai"].Value.ToString());
             cboTypeId.SelectedIndex = cboTypeId.FindString(dgvProduct.Rows[r].Cells["MaLoai"].Value.ToString());
-          
+
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -110,7 +111,6 @@ namespace CNPM
         private void btnSave_Click(object sender, EventArgs e)
         {
 
-            int id = int.Parse(txtId.Text);
             int typeId = int.Parse(cboTypeId.Text);
             string manufactureDate = txtManufactureDate.Text;
             string expireDate = txtExpireDate.Text;
@@ -126,12 +126,13 @@ namespace CNPM
                         MessageBox.Show("Thêm được " + i + " sản phẩm");
                         MessageBox.Show(err);
 
-                    }   
+                    }
                 LoadData();
                 MessageBox.Show("Đã thêm");
             }
             else
             {
+                int id = int.Parse(txtId.Text);
                 if (db.UpdateProduct(id, status, typeId, manufactureDate, expireDate, ref err))
                 {
                     LoadData();
@@ -188,13 +189,13 @@ namespace CNPM
             int typeId = int.Parse(cboTypeId1.Text);
             string typeName = txtTypeName.Text;
             float capacity = float.Parse(txtCapacity.Text);
-            int price =int.Parse(txtPrice.Text);
+            int price = int.Parse(txtPrice.Text);
             Image img = pic.Image;
             BLProduct db = new BLProduct();
             string err = "";
             if (addType)
             {
-                if (db.InsertProductType( typeName, capacity, price, MyConvert.ImageToByteArray(img) , ref err))
+                if (db.InsertProductType(typeName, capacity, price, MyConvert.ImageToByteArray(img), ref err))
                 {
                     LoadData();
                     MessageBox.Show("Đã thêm");
@@ -247,6 +248,7 @@ namespace CNPM
                         txtId.Hide();
                         lblQuantity.Show();
                         txtQuantity.Show();
+                        txtQuantity.Text = DEFAULTNUMBER.ToString();
                     }
                     else
                         cboStatus.Enabled = true;
@@ -287,23 +289,61 @@ namespace CNPM
         void Statistics(int typeId)
         {
             BLProduct db = new BLProduct();
+            if (typeId == 0)
+            {
+                txtCusHolding.Show();
+                lblCusholding.Show();
+                lblSold.Hide();
+                txtSold.Hide();
+                txtCusHolding.Text = db.getMetric(0, "Đã bán").ToString();
+            }
+            else
+            {
+                lblCusholding.Hide();
+                txtCusHolding.Hide();
+                lblSold.Show();
+                txtSold.Show();
+                txtSold.Text = db.getMetric(typeId, "Đã bán").ToString();
+
+            }
+            txtTotal.Text = db.Total(typeId).ToString();
+            txtInStock.Text = db.getMetric(typeId, "Còn").ToString();
+            txtBroken.Text = db.getMetric(typeId, "Hỏng").ToString();
+            txtBeDelivered.Text = db.getMetric(typeId, "Đã đặt hàng").ToString();
+
         }
 
         private void txtQuantity_TextChanged(object sender, EventArgs e)
         {
-            if (txtQuantity.Text == "")
-                return;
-            if (!char.IsDigit(txtQuantity.Text.Last()) || txtQuantity.Text.Length>4)
+            if (txtQuantity.Text == "" || quantity==0)
             {
-                txtQuantity.Text = quantity;
+                txtQuantity.Text = DEFAULTNUMBER.ToString();
+                return;
+            }
+            else
+            {
+                txtQuantity.Text = quantity.ToString();
                 txtQuantity.SelectionLength = 0;
                 txtQuantity.SelectionStart = txtQuantity.Text.Length;
+
             }
         }
 
         private void txtQuantity_KeyDown(object sender, KeyEventArgs e)
         {
-            quantity = txtQuantity.Text;
+            
+            if ((e.KeyCode >= Keys.D0 && e.KeyCode <= Keys.D9)
+                  || (e.KeyCode >= Keys.NumPad0 && e.KeyCode <= Keys.NumPad9))
+            {
+                if (quantity / (int)Math.Pow(10, MAXLENGTH-1) >= 1)
+                    return;
+                quantity *= 10;
+                quantity += e.KeyValue % 48;
+            }
+            if (e.KeyCode == Keys.Back)
+            {
+                quantity /= 10;
+            }
         }
 
         private void pic_Click(object sender, EventArgs e)

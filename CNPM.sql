@@ -61,7 +61,7 @@ create table NhanVien(
 
 create table DonHang(
 	MaDH int identity primary key, 
-	ThoiDiemDatHang date, 
+	ThoiDiemDatHang datetime, 
 	TongSoTien int, 
 	MaKH int references KhachHang(MaKH),
 	TrangThai nvarchar(50)
@@ -79,14 +79,14 @@ create table ChiTietDonHang(
 create table GiaoHang(
 	MaDH int references DonHang(MaDH), 
 	MaNV int references NhanVien(MaNV), 
-	ThoiDiemGiaoHang date,
+	ThoiDiemGiaoHang datetime,
 	primary key (MaDH, MaNV)
 )
 
 
 create table HoaDon(
 	MaHD int identity primary key, 
-	NgayIn date, 
+	NgayIn datetime, 
 	TongSoTien int, 
 	MaDH int references DonHang(MaDH), 
 	MaNV int references NhanVien(MaNV)
@@ -106,7 +106,7 @@ create table TienCong(
 	MaNV int references NhanVien(MaNV), 
 	MaHD int references HoaDon(MaHD),
 	SoTien int ,
-	Ngay date,
+	Ngay datetime,
 )-- sua
 
 

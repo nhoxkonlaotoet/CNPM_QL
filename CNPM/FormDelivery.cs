@@ -228,7 +228,7 @@ namespace CNPM
             string err = "";
 
             foreach (string order in orders)
-                if (!db.InsertTransport(int.Parse(emp_id),int.Parse( order), DateTime.Now, ref err))
+                if (!db.InsertDelivery(int.Parse(emp_id),int.Parse( order), DateTime.Now, ref err))
                 {
                     MessageBox.Show("Giao hàng thất bại: \r\n" + err);
                     return;

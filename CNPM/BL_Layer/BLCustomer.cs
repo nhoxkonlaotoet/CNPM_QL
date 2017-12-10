@@ -17,7 +17,18 @@ namespace CNPM.BL_Layer
         }
         public DataTable Customers()
         {
-            string sqlString = @"Select MaKH, HoTen, Tuoi, Nam, DiaChi, SoDienThoai, Lat,Lng from KhachHang";
+            string sqlString = @" select KhachHang.MaKH, HoTen, Tuoi, Nam, DiaChi, SoDienThoai, Lat,Lng, SoBinhDangGiu
+                                    from KhachHang left outer join
+                                                    (select MaKH, count( A.MaSP) as SoBinhDangGiu
+                                                    from ChiTietDonHang,DonHang,(select ChiTietDonHang.MaSP, max(ThoiDiemDatHang) as ThoiDiemGanNhat
+								                                                from ChiTietDonHang, SanPham, DonHang 
+								                                                where DonHang.MaDH=ChiTietDonHang.MaDH and MaLoai=0 
+								                                                and ChiTietDonHang.masp=sanpham.masp and SanPham.TrangThai!=N'Còn'
+								                                                group by ChiTietDonHang.MaSP) as A
+                                                    where ChiTietDonHang.MaSP = A.MaSP and DonHang.MaDH=ChiTietDonHang.MaDH and DonHang.TrangThai!=N'Đã gửi'
+                                                    and DonHang.ThoiDiemDatHang=A.ThoiDiemGanNhat 
+                                                    group by MaKH) as B
+                                on KhachHang.MaKH=B.MaKH";
             return db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
         } 
         public DataTable PhoneNumbers()

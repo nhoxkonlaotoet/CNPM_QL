@@ -32,9 +32,9 @@
             this.pnlTypeInfo = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label16 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
+            this.lblCusholding = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
+            this.lblSold = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtBroken = new System.Windows.Forms.TextBox();
@@ -76,6 +76,14 @@
             this.lblId = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dgvProduct = new System.Windows.Forms.DataGridView();
+            this.MaSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaLoai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenSanPham = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DungTich = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Gia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TrangThai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NgaySanXuat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HanSuDung = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
@@ -119,9 +127,9 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.label16);
-            this.panel1.Controls.Add(this.label18);
+            this.panel1.Controls.Add(this.lblCusholding);
             this.panel1.Controls.Add(this.label19);
-            this.panel1.Controls.Add(this.label17);
+            this.panel1.Controls.Add(this.lblSold);
             this.panel1.Controls.Add(this.label14);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.txtBroken);
@@ -145,15 +153,15 @@
             this.label16.TabIndex = 22;
             this.label16.Text = "Hỏng";
             // 
-            // label18
+            // lblCusholding
             // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(262, 105);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(124, 21);
-            this.label18.TabIndex = 22;
-            this.label18.Text = "Khách đang giữ: ";
+            this.lblCusholding.AutoSize = true;
+            this.lblCusholding.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCusholding.Location = new System.Drawing.Point(262, 105);
+            this.lblCusholding.Name = "lblCusholding";
+            this.lblCusholding.Size = new System.Drawing.Size(124, 21);
+            this.lblCusholding.TabIndex = 22;
+            this.lblCusholding.Text = "Khách đang giữ: ";
             // 
             // label19
             // 
@@ -165,15 +173,15 @@
             this.label19.TabIndex = 22;
             this.label19.Text = "Sắp giao: ";
             // 
-            // label17
+            // lblSold
             // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(262, 60);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(66, 21);
-            this.label17.TabIndex = 22;
-            this.label17.Text = "Đã bán: ";
+            this.lblSold.AutoSize = true;
+            this.lblSold.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSold.Location = new System.Drawing.Point(262, 60);
+            this.lblSold.Name = "lblSold";
+            this.lblSold.Size = new System.Drawing.Size(66, 21);
+            this.lblSold.TabIndex = 22;
+            this.lblSold.Text = "Đã bán: ";
             // 
             // label14
             // 
@@ -612,6 +620,15 @@
             this.dgvProduct.AllowUserToResizeRows = false;
             this.dgvProduct.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProduct.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.MaSP,
+            this.MaLoai,
+            this.TenSanPham,
+            this.DungTich,
+            this.Gia,
+            this.TrangThai,
+            this.NgaySanXuat,
+            this.HanSuDung});
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -625,9 +642,71 @@
             this.dgvProduct.Name = "dgvProduct";
             this.dgvProduct.ReadOnly = true;
             this.dgvProduct.RowHeadersVisible = false;
+            this.dgvProduct.RowTemplate.Height = 30;
             this.dgvProduct.Size = new System.Drawing.Size(770, 189);
             this.dgvProduct.TabIndex = 2;
             this.dgvProduct.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProduct_CellClick);
+            // 
+            // MaSP
+            // 
+            this.MaSP.DataPropertyName = "MaSP";
+            this.MaSP.FillWeight = 40F;
+            this.MaSP.HeaderText = "Mã SP";
+            this.MaSP.Name = "MaSP";
+            this.MaSP.ReadOnly = true;
+            // 
+            // MaLoai
+            // 
+            this.MaLoai.DataPropertyName = "MaLoai";
+            this.MaLoai.FillWeight = 40F;
+            this.MaLoai.HeaderText = "Mã loại";
+            this.MaLoai.Name = "MaLoai";
+            this.MaLoai.ReadOnly = true;
+            // 
+            // TenSanPham
+            // 
+            this.TenSanPham.DataPropertyName = "TenSanPham";
+            this.TenSanPham.FillWeight = 180F;
+            this.TenSanPham.HeaderText = "Tên mặt hàng";
+            this.TenSanPham.Name = "TenSanPham";
+            this.TenSanPham.ReadOnly = true;
+            // 
+            // DungTich
+            // 
+            this.DungTich.DataPropertyName = "DungTich";
+            this.DungTich.FillWeight = 80F;
+            this.DungTich.HeaderText = "Dung tích";
+            this.DungTich.Name = "DungTich";
+            this.DungTich.ReadOnly = true;
+            // 
+            // Gia
+            // 
+            this.Gia.DataPropertyName = "Gia";
+            this.Gia.FillWeight = 80F;
+            this.Gia.HeaderText = "Đơn giá";
+            this.Gia.Name = "Gia";
+            this.Gia.ReadOnly = true;
+            // 
+            // TrangThai
+            // 
+            this.TrangThai.DataPropertyName = "TrangThai";
+            this.TrangThai.HeaderText = "Trạng thái";
+            this.TrangThai.Name = "TrangThai";
+            this.TrangThai.ReadOnly = true;
+            // 
+            // NgaySanXuat
+            // 
+            this.NgaySanXuat.DataPropertyName = "NgaySanXuat";
+            this.NgaySanXuat.HeaderText = "Ngày sản xuất";
+            this.NgaySanXuat.Name = "NgaySanXuat";
+            this.NgaySanXuat.ReadOnly = true;
+            // 
+            // HanSuDung
+            // 
+            this.HanSuDung.DataPropertyName = "HanSuDung";
+            this.HanSuDung.HeaderText = "Hạn sử dụng";
+            this.HanSuDung.Name = "HanSuDung";
+            this.HanSuDung.ReadOnly = true;
             // 
             // btnSearch
             // 
@@ -765,9 +844,9 @@
         private System.Windows.Forms.Label lblQuantity;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label lblCusholding;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label lblSold;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtTotal;
@@ -776,5 +855,13 @@
         private System.Windows.Forms.TextBox txtSold;
         private System.Windows.Forms.TextBox txtBeDelivered;
         private System.Windows.Forms.TextBox txtInStock;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaSP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaLoai;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenSanPham;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DungTich;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Gia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TrangThai;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NgaySanXuat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HanSuDung;
     }
 }

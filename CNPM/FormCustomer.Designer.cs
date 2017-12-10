@@ -28,16 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvCustomer = new System.Windows.Forms.DataGridView();
-            this.MaKH = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HoTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tuoi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nam = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.DiaChi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SoDienThoai = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Lat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Lng = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
@@ -82,6 +74,15 @@
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.MaKH = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HoTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tuoi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nam = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.DiaChi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SoDienThoai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Lat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Lng = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SoBinhDangGiu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomer)).BeginInit();
             this.panel3.SuspendLayout();
             this.pnlInfor.SuspendLayout();
@@ -93,6 +94,8 @@
             // 
             this.dgvCustomer.AllowUserToAddRows = false;
             this.dgvCustomer.AllowUserToDeleteRows = false;
+            this.dgvCustomer.AllowUserToResizeColumns = false;
+            this.dgvCustomer.AllowUserToResizeRows = false;
             this.dgvCustomer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCustomer.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -103,86 +106,24 @@
             this.DiaChi,
             this.SoDienThoai,
             this.Lat,
-            this.Lng});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvCustomer.DefaultCellStyle = dataGridViewCellStyle8;
+            this.Lng,
+            this.SoBinhDangGiu});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvCustomer.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvCustomer.Location = new System.Drawing.Point(3, 102);
             this.dgvCustomer.Name = "dgvCustomer";
             this.dgvCustomer.ReadOnly = true;
             this.dgvCustomer.RowHeadersVisible = false;
+            this.dgvCustomer.RowTemplate.Height = 30;
             this.dgvCustomer.Size = new System.Drawing.Size(945, 189);
             this.dgvCustomer.TabIndex = 6;
             this.dgvCustomer.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomer_CellClick);
-            // 
-            // MaKH
-            // 
-            this.MaKH.DataPropertyName = "MaKH";
-            this.MaKH.FillWeight = 67.55135F;
-            this.MaKH.HeaderText = "Mã khách";
-            this.MaKH.Name = "MaKH";
-            this.MaKH.ReadOnly = true;
-            // 
-            // HoTen
-            // 
-            this.HoTen.DataPropertyName = "HoTen";
-            this.HoTen.FillWeight = 162.2904F;
-            this.HoTen.HeaderText = "Họ tên";
-            this.HoTen.Name = "HoTen";
-            this.HoTen.ReadOnly = true;
-            // 
-            // Tuoi
-            // 
-            this.Tuoi.DataPropertyName = "Tuoi";
-            this.Tuoi.FillWeight = 46.86259F;
-            this.Tuoi.HeaderText = "Tuổi";
-            this.Tuoi.Name = "Tuoi";
-            this.Tuoi.ReadOnly = true;
-            // 
-            // Nam
-            // 
-            this.Nam.DataPropertyName = "Nam";
-            this.Nam.FillWeight = 45.68528F;
-            this.Nam.HeaderText = "Nam";
-            this.Nam.Name = "Nam";
-            this.Nam.ReadOnly = true;
-            // 
-            // DiaChi
-            // 
-            this.DiaChi.DataPropertyName = "DiaChi";
-            this.DiaChi.FillWeight = 188.2469F;
-            this.DiaChi.HeaderText = "Địa chỉ";
-            this.DiaChi.Name = "DiaChi";
-            this.DiaChi.ReadOnly = true;
-            // 
-            // SoDienThoai
-            // 
-            this.SoDienThoai.DataPropertyName = "SoDienThoai";
-            this.SoDienThoai.FillWeight = 89.36341F;
-            this.SoDienThoai.HeaderText = "Số điện thoại";
-            this.SoDienThoai.Name = "SoDienThoai";
-            this.SoDienThoai.ReadOnly = true;
-            // 
-            // Lat
-            // 
-            this.Lat.DataPropertyName = "Lat";
-            this.Lat.HeaderText = "Lat";
-            this.Lat.Name = "Lat";
-            this.Lat.ReadOnly = true;
-            this.Lat.Visible = false;
-            // 
-            // Lng
-            // 
-            this.Lng.DataPropertyName = "Lng";
-            this.Lng.HeaderText = "Lng";
-            this.Lng.Name = "Lng";
-            this.Lng.ReadOnly = true;
-            this.Lng.Visible = false;
             // 
             // btnSearch
             // 
@@ -669,6 +610,78 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
+            // MaKH
+            // 
+            this.MaKH.DataPropertyName = "MaKH";
+            this.MaKH.FillWeight = 30F;
+            this.MaKH.HeaderText = "Mã khách";
+            this.MaKH.Name = "MaKH";
+            this.MaKH.ReadOnly = true;
+            // 
+            // HoTen
+            // 
+            this.HoTen.DataPropertyName = "HoTen";
+            this.HoTen.FillWeight = 85F;
+            this.HoTen.HeaderText = "Họ tên";
+            this.HoTen.Name = "HoTen";
+            this.HoTen.ReadOnly = true;
+            // 
+            // Tuoi
+            // 
+            this.Tuoi.DataPropertyName = "Tuoi";
+            this.Tuoi.FillWeight = 30F;
+            this.Tuoi.HeaderText = "Tuổi";
+            this.Tuoi.Name = "Tuoi";
+            this.Tuoi.ReadOnly = true;
+            // 
+            // Nam
+            // 
+            this.Nam.DataPropertyName = "Nam";
+            this.Nam.FillWeight = 30F;
+            this.Nam.HeaderText = "Nam";
+            this.Nam.Name = "Nam";
+            this.Nam.ReadOnly = true;
+            // 
+            // DiaChi
+            // 
+            this.DiaChi.DataPropertyName = "DiaChi";
+            this.DiaChi.FillWeight = 220F;
+            this.DiaChi.HeaderText = "Địa chỉ";
+            this.DiaChi.Name = "DiaChi";
+            this.DiaChi.ReadOnly = true;
+            // 
+            // SoDienThoai
+            // 
+            this.SoDienThoai.DataPropertyName = "SoDienThoai";
+            this.SoDienThoai.FillWeight = 70F;
+            this.SoDienThoai.HeaderText = "Số điện thoại";
+            this.SoDienThoai.Name = "SoDienThoai";
+            this.SoDienThoai.ReadOnly = true;
+            // 
+            // Lat
+            // 
+            this.Lat.DataPropertyName = "Lat";
+            this.Lat.HeaderText = "Lat";
+            this.Lat.Name = "Lat";
+            this.Lat.ReadOnly = true;
+            this.Lat.Visible = false;
+            // 
+            // Lng
+            // 
+            this.Lng.DataPropertyName = "Lng";
+            this.Lng.HeaderText = "Lng";
+            this.Lng.Name = "Lng";
+            this.Lng.ReadOnly = true;
+            this.Lng.Visible = false;
+            // 
+            // SoBinhDangGiu
+            // 
+            this.SoBinhDangGiu.DataPropertyName = "SoBinhDangGiu";
+            this.SoBinhDangGiu.FillWeight = 25F;
+            this.SoBinhDangGiu.HeaderText = "Số bình đang giữ";
+            this.SoBinhDangGiu.Name = "SoBinhDangGiu";
+            this.SoBinhDangGiu.ReadOnly = true;
+            // 
             // FormCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -747,5 +760,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SoDienThoai;
         private System.Windows.Forms.DataGridViewTextBoxColumn Lat;
         private System.Windows.Forms.DataGridViewTextBoxColumn Lng;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SoBinhDangGiu;
     }
 }

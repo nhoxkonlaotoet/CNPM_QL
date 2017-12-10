@@ -48,7 +48,19 @@ namespace CNPM.BL_Layer
         }
         public bool Update(int id, string date, int cost, int cusId, string status, ref string err)
         {
-            string sqlString = "Update DonHang set ThoiDiemDatHang='" + date + "',TongSoTien= " + cost + ",MaKH= " + cusId + ",TrangThai= N'" + status + "' where MaDH="+id;
+            string sqlString = "Update DonHang set ThoiDiemDatHang='" + date + "',MaKH= " + cusId + ",TrangThai= N'" + status + "' where MaDH="+id+";";
+            sqlString += "delete from GiaoHang where MaDH=" + id;
+
+            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+        }
+        public bool Update(int id, string date, int cost, int cusId, int EmpId, string status, ref string err)
+        {
+            string sqlString = "Update DonHang set ThoiDiemDatHang='" + date + "',MaKH= " + cusId + ",TrangThai= N'" + status + "' where MaDH=" + id+";";
+            if (IsDelivered(id))
+            {
+                sqlString += "delete from GiaoHang where MaDH=" + id;
+            }
+            sqlString += "Insert into GiaoHang values(" + id + ", " + EmpId + ", '" + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + "')";
             return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
         }
         public bool Delete(int id, ref string err)
@@ -61,13 +73,19 @@ namespace CNPM.BL_Layer
             string sqlString = @"Select MaKH, HoTen from Khachhang";
             return db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
         }
-        public DataTable FreeEmployees()
+
+        public DataTable FreeEmployees(int orderId)
         {
-            string sqlString = @"Select MaNV, HoTen from NhanVien where TrangThai=N'Rảnh'";
+            string sqlString = @" Select distinct NhanVien.MaNV, HoTen from NhanVien,GiaoHang 
+                                where NhanVien.MaNV=GiaoHang.MaNV and (MaDH="+orderId+" or TrangThai=N'Rảnh')";
             return db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
         }
-
-        public int TransportedId(int orderId)
+        public DataTable Employees()
+        {
+            string sqlString = @"Select MaNV, HoTen from NhanVien";
+            return db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
+        }
+        public int ShipperId(int orderId)
         {
             string sqlString = @"select MaNV from GiaoHang where MaDH="+orderId;
             DataTable dt = db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
@@ -76,7 +94,22 @@ namespace CNPM.BL_Layer
             return -1;
         }
 
-
+        public bool IsDelivered(int orderId)
+        {
+            string sqlString = @"select MaDH from GiaoHang where MaDH=" + orderId;
+            DataTable dt = db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
+            if (dt != null && dt.Rows.Count > 0)
+                return true;
+            return false;
+        }
+        public DateTime DeliveryTime(int orderId)
+        {
+            string sqlString = @"select ThoiDiemGiaoHang from GiaoHang where MaDH= " + orderId;
+            DataTable dt = db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
+            if (dt != null && dt.Rows.Count > 0)
+                return Convert.ToDateTime(dt.Rows[0]["ThoiDiemGiaoHang"].ToString());
+            return DateTime.MinValue;
+        }
 
 
 
@@ -117,6 +150,17 @@ namespace CNPM.BL_Layer
                     return int.Parse(dt.Rows[0]["ConLai"].ToString());
             return -1;
         }
+
+        public int ProductIdOfOrder(int orderId, int typeId)
+        {
+            string sqlString = @"select top 1 SanPham.MaSP from ChiTietDonHang,SanPham
+                                    where ChiTietDonHang.MaSP=SanPham.MaSP and MaLoai="+typeId+" and MaDH=" + orderId;
+            DataTable dt = db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
+            if (dt != null && dt.Rows.Count > 0)
+                return int.Parse(dt.Rows[0]["MaSP"].ToString());
+            return -1;
+        }
+
         public int Price(int TypeId)
         {
             string sqlString = @"select Gia from LoaiSanPham where MaLoai=" + TypeId;
@@ -133,6 +177,7 @@ namespace CNPM.BL_Layer
                 return int.Parse(dt.Rows[0]["MaSP"].ToString());
             return -1;
         }
+
         
     }
 }

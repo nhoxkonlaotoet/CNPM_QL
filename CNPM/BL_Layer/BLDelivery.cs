@@ -44,11 +44,11 @@ namespace CNPM.BL_Layer
 		                        and SanPham.MaLoai=LoaiSanPham.MaLoai and MaDH=" + orderId;
             return db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
         }
-        public bool InsertTransport(int empId, int orderId, DateTime time, ref string err)
+        public bool InsertDelivery(int empId, int orderId, DateTime time, ref string err)
         {
             string sqlString = "Insert into GiaoHang values(" + orderId + ", " + empId + ", '" + time.ToString("MM/dd/yyyy HH:mm:ss") + "');";
-            sqlString += "Update DonHang set TrangThai=N'Đã giao' where MaDH=" + orderId + ";";
-            sqlString += "Update NhanVien set TrangThai=N'Đang giao hàng' where MaNV=" + empId ;
+            sqlString += "Update DonHang set TrangThai=N'Đang chuyển' where MaDH=" + orderId + ";";
+            sqlString += "Update NhanVien set TrangThai=N'Giao hàng' where MaNV=" + empId ;
             return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
         }
     }

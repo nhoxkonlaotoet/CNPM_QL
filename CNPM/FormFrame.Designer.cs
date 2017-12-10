@@ -29,14 +29,15 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnEmployee = new System.Windows.Forms.Button();
+            this.btnAccount = new System.Windows.Forms.Button();
+            this.btnSalary = new System.Windows.Forms.Button();
+            this.btnInvoice = new System.Windows.Forms.Button();
             this.btnOrder = new System.Windows.Forms.Button();
             this.btnCustomer = new System.Windows.Forms.Button();
             this.btnProduct = new System.Windows.Forms.Button();
             this.btnController = new System.Windows.Forms.Button();
-            this.btnEmployee = new System.Windows.Forms.Button();
-            this.btnInvoice = new System.Windows.Forms.Button();
-            this.btnSalary = new System.Windows.Forms.Button();
-            this.btnAccount = new System.Windows.Forms.Button();
+            this.btnFeedback = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,6 +45,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.btnEmployee);
+            this.panel1.Controls.Add(this.btnFeedback);
             this.panel1.Controls.Add(this.btnAccount);
             this.panel1.Controls.Add(this.btnSalary);
             this.panel1.Controls.Add(this.btnInvoice);
@@ -56,6 +58,58 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1350, 68);
             this.panel1.TabIndex = 0;
+            // 
+            // btnEmployee
+            // 
+            this.btnEmployee.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnEmployee.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEmployee.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEmployee.Location = new System.Drawing.Point(420, 12);
+            this.btnEmployee.Name = "btnEmployee";
+            this.btnEmployee.Size = new System.Drawing.Size(130, 43);
+            this.btnEmployee.TabIndex = 0;
+            this.btnEmployee.Text = "Nhân viên";
+            this.btnEmployee.UseVisualStyleBackColor = false;
+            this.btnEmployee.Click += new System.EventHandler(this.btnMenu_Click);
+            // 
+            // btnAccount
+            // 
+            this.btnAccount.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAccount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAccount.Location = new System.Drawing.Point(1100, 12);
+            this.btnAccount.Name = "btnAccount";
+            this.btnAccount.Size = new System.Drawing.Size(130, 43);
+            this.btnAccount.TabIndex = 0;
+            this.btnAccount.Text = "Tài khoản";
+            this.btnAccount.UseVisualStyleBackColor = false;
+            this.btnAccount.Click += new System.EventHandler(this.btnMenu_Click);
+            // 
+            // btnSalary
+            // 
+            this.btnSalary.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnSalary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSalary.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalary.Location = new System.Drawing.Point(828, 12);
+            this.btnSalary.Name = "btnSalary";
+            this.btnSalary.Size = new System.Drawing.Size(130, 43);
+            this.btnSalary.TabIndex = 0;
+            this.btnSalary.Text = "Tiền công";
+            this.btnSalary.UseVisualStyleBackColor = false;
+            this.btnSalary.Click += new System.EventHandler(this.btnMenu_Click);
+            // 
+            // btnInvoice
+            // 
+            this.btnInvoice.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnInvoice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInvoice.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInvoice.Location = new System.Drawing.Point(692, 12);
+            this.btnInvoice.Name = "btnInvoice";
+            this.btnInvoice.Size = new System.Drawing.Size(130, 43);
+            this.btnInvoice.TabIndex = 0;
+            this.btnInvoice.Text = "Hóa đơn";
+            this.btnInvoice.UseVisualStyleBackColor = false;
+            this.btnInvoice.Click += new System.EventHandler(this.btnMenu_Click);
             // 
             // btnOrder
             // 
@@ -110,57 +164,18 @@
             this.btnController.UseVisualStyleBackColor = false;
             this.btnController.Click += new System.EventHandler(this.btnMenu_Click);
             // 
-            // btnEmployee
+            // btnFeedback
             // 
-            this.btnEmployee.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnEmployee.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEmployee.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEmployee.Location = new System.Drawing.Point(420, 12);
-            this.btnEmployee.Name = "btnEmployee";
-            this.btnEmployee.Size = new System.Drawing.Size(130, 43);
-            this.btnEmployee.TabIndex = 0;
-            this.btnEmployee.Text = "Nhân viên";
-            this.btnEmployee.UseVisualStyleBackColor = false;
-            this.btnEmployee.Click += new System.EventHandler(this.btnMenu_Click);
-            // 
-            // btnInvoice
-            // 
-            this.btnInvoice.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnInvoice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInvoice.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInvoice.Location = new System.Drawing.Point(692, 12);
-            this.btnInvoice.Name = "btnInvoice";
-            this.btnInvoice.Size = new System.Drawing.Size(130, 43);
-            this.btnInvoice.TabIndex = 0;
-            this.btnInvoice.Text = "Hóa đơn";
-            this.btnInvoice.UseVisualStyleBackColor = false;
-            this.btnInvoice.Click += new System.EventHandler(this.btnMenu_Click);
-            // 
-            // btnSalary
-            // 
-            this.btnSalary.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnSalary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSalary.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalary.Location = new System.Drawing.Point(828, 12);
-            this.btnSalary.Name = "btnSalary";
-            this.btnSalary.Size = new System.Drawing.Size(130, 43);
-            this.btnSalary.TabIndex = 0;
-            this.btnSalary.Text = "Tiền công";
-            this.btnSalary.UseVisualStyleBackColor = false;
-            this.btnSalary.Click += new System.EventHandler(this.btnMenu_Click);
-            // 
-            // btnAccount
-            // 
-            this.btnAccount.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAccount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAccount.Location = new System.Drawing.Point(964, 12);
-            this.btnAccount.Name = "btnAccount";
-            this.btnAccount.Size = new System.Drawing.Size(130, 43);
-            this.btnAccount.TabIndex = 0;
-            this.btnAccount.Text = "Tài khoản";
-            this.btnAccount.UseVisualStyleBackColor = false;
-            this.btnAccount.Click += new System.EventHandler(this.btnMenu_Click);
+            this.btnFeedback.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnFeedback.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFeedback.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFeedback.Location = new System.Drawing.Point(964, 12);
+            this.btnFeedback.Name = "btnFeedback";
+            this.btnFeedback.Size = new System.Drawing.Size(130, 43);
+            this.btnFeedback.TabIndex = 0;
+            this.btnFeedback.Text = "Phản hồi";
+            this.btnFeedback.UseVisualStyleBackColor = false;
+            this.btnFeedback.Click += new System.EventHandler(this.btnMenu_Click);
             // 
             // FormFrame
             // 
@@ -190,5 +205,6 @@
         private System.Windows.Forms.Button btnInvoice;
         private System.Windows.Forms.Button btnSalary;
         private System.Windows.Forms.Button btnAccount;
+        private System.Windows.Forms.Button btnFeedback;
     }
 }

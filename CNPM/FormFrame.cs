@@ -20,6 +20,7 @@ namespace CNPM
                         ORDER = "Order",
                         INVOICE = "Invoice",
                         SALARY= "Salary",
+                        FEEDBACK ="Feedback",
                         ACCOUNT = "Account";
         public FormFrame()
         {
@@ -44,7 +45,9 @@ namespace CNPM
             btnEmployee.Tag = EMPLOYEE;
             btnInvoice.Tag = INVOICE;
             btnSalary.Tag = SALARY;
+            btnFeedback.Tag = FEEDBACK;
             btnAccount.Tag = ACCOUNT;
+            
         }
         private void btnMenu_Click(object sender, EventArgs e)
         {
