@@ -19,22 +19,22 @@ namespace CNPM
     {
         List<object> lstOrderbyEmp;
         string emp_id;
-       
+        int curOrder;
+        bool byId = true;
         public FormDelivery()
         {
             InitializeComponent();
+            gMapControl1.ShowCenter = false;
+            gMapControl1.MapProvider = GoogleMapProvider.Instance;
+            GMaps.Instance.Mode = AccessMode.ServerOnly;
+            btnTransfer.Image = Image.FromFile("transfer.png");
+            btnRefresh.Image = Image.FromFile("refresh.png");
         }
 
         private void FormController_Load(object sender, EventArgs e)
         {
-            gMapControl1.ShowCenter = false;
-            gMapControl1.MapProvider = GoogleMapProvider.Instance;
-            GMaps.Instance.Mode = AccessMode.ServerOnly;
             gMapControl1.SetPositionByKeywords("Vietnam, Ho Chi Minh, Thu Duc, Su pham ky thuat");
             LoadData();
-
-
-
         }
         void LoadData()
         {
@@ -151,7 +151,10 @@ namespace CNPM
             txtAddress.Text = dtorder.Rows[0]["DiaChi"].ToString();
             txtPhoneNumber.Text = dtorder.Rows[0]["SoDienThoai"].ToString();
             txtCost.Text = dtorder.Rows[0]["TongSoTien"].ToString();
-            dgvDetail.DataSource = db.GetDetail(orderId);
+            if (byId)
+                dgvDetail.DataSource = db.GetDetailbyId(orderId);
+            else
+                dgvDetail.DataSource = db.GetDetailbyNumber(orderId);
 
         }
 
@@ -201,7 +204,8 @@ namespace CNPM
             if (lbOrder.SelectedItem != null)
             {
                 lbEmpOrder.SelectedIndex = -1;
-                LoadDetail(int.Parse(lbOrder.SelectedItem.ToString()));
+                curOrder = int.Parse(lbOrder.SelectedItem.ToString());
+                LoadDetail(curOrder);
             }
         }
         private void lbEmpOrder_SelectedIndexChanged(object sender, EventArgs e)
@@ -209,7 +213,8 @@ namespace CNPM
             if (lbEmpOrder.SelectedItem != null)
             {
                 lbOrder.SelectedIndex = -1;
-                LoadDetail(int.Parse(lbEmpOrder.SelectedItem.ToString()));
+                curOrder = int.Parse(lbEmpOrder.SelectedItem.ToString());
+                LoadDetail(curOrder);
             }
         }
 
@@ -235,6 +240,17 @@ namespace CNPM
                 }
             MessageBox.Show("Đã giao");
             OnLoad(e);
+        }
+
+        private void btnChange_Click(object sender, EventArgs e)
+        {
+            byId = byId ? false: true;
+            LoadDetail(curOrder);
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            LoadData();
         }
     }
 }

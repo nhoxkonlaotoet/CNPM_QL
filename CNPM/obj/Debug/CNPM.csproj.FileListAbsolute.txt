@@ -19,3 +19,6 @@ D:\HK5\SE\CNPM\CNPM\obj\Debug\CNPM.FormMap.resources
 D:\HK5\SE\CNPM\CNPM\obj\Debug\CNPM.FormOrder.resources
 D:\HK5\SE\CNPM\CNPM\obj\Debug\CNPM.FormDelivery.resources
 D:\HK5\SE\CNPM\CNPM\obj\Debug\CNPM.MyMessageBox.resources
+D:\HK5\SE\CNPM\CNPM\obj\Debug\CNPM.FormInvoice.resources
+D:\HK5\SE\CNPM\CNPM\obj\Debug\CNPM.FormSalary.resources
+D:\HK5\SE\CNPM\CNPM\obj\Debug\CNPM.AddInvoice.resources

@@ -52,9 +52,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddInvoice.Designer.cs">
+      <DependentUpon>AddInvoice.cs</DependentUpon>
+    </Compile>
     <Compile Include="BL_Layer\BLAccount.cs" />
     <Compile Include="BL_Layer\BLDelivery.cs" />
     <Compile Include="BL_Layer\BLCustomer.cs" />
+    <Compile Include="BL_Layer\BLInvoice.cs" />
     <Compile Include="BL_Layer\BLLogin.cs" />
     <Compile Include="BL_Layer\BLOrder.cs" />
     <Compile Include="BL_Layer\BLProduct.cs" />
@@ -83,6 +90,12 @@
     <Compile Include="FormFrame.Designer.cs">
       <DependentUpon>FormFrame.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormInvoice.Designer.cs">
+      <DependentUpon>FormInvoice.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +120,12 @@
     <Compile Include="FormProduct.Designer.cs">
       <DependentUpon>FormProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSalary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalary.Designer.cs">
+      <DependentUpon>FormSalary.cs</DependentUpon>
+    </Compile>
     <Compile Include="MyConvert.cs" />
     <Compile Include="MyMessageBox.cs">
       <SubType>Form</SubType>
@@ -116,6 +135,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddInvoice.resx">
+      <DependentUpon>AddInvoice.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormDelivery.resx">
       <DependentUpon>FormDelivery.cs</DependentUpon>
     </EmbeddedResource>
@@ -128,6 +150,9 @@
     <EmbeddedResource Include="FormFrame.resx">
       <DependentUpon>FormFrame.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormInvoice.resx">
+      <DependentUpon>FormInvoice.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -139,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProduct.resx">
       <DependentUpon>FormProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalary.resx">
+      <DependentUpon>FormSalary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyMessageBox.resx">
       <DependentUpon>MyMessageBox.cs</DependentUpon>

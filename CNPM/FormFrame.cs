@@ -19,8 +19,8 @@ namespace CNPM
                         EMPLOYEE = "Employee",
                         ORDER = "Order",
                         INVOICE = "Invoice",
-                        SALARY= "Salary",
-                        FEEDBACK ="Feedback",
+                        SALARY = "Salary",
+                        FEEDBACK = "Feedback",
                         ACCOUNT = "Account";
         public FormFrame()
         {
@@ -47,7 +47,7 @@ namespace CNPM
             btnSalary.Tag = SALARY;
             btnFeedback.Tag = FEEDBACK;
             btnAccount.Tag = ACCOUNT;
-            
+
         }
         private void btnMenu_Click(object sender, EventArgs e)
         {
@@ -74,16 +74,42 @@ namespace CNPM
                     fc1.Dock = DockStyle.Fill;
                     fc1.Show();
                     break;
+                case EMPLOYEE:
+                    FormEmployee fe = new FormEmployee();
+                    fe.MdiParent = this;
+                    fe.Dock = DockStyle.Fill;
+                    fe.Show();
+                    break;
                 case ORDER:
                     FormOrder fo = new FormOrder();
                     fo.MdiParent = this;
                     fo.Dock = DockStyle.Fill;
+                    fo.AddNewInvoice += new EventHandler(CreateInvoid);
                     fo.Show();
+                    break;
+                case INVOICE:
+                    FormInvoice fi = new FormInvoice();
+                    fi.MdiParent = this;
+                    fi.Dock = DockStyle.Fill;
+                    fi.Show();
+                    break;
+                case FEEDBACK:
+                    break;
+                case SALARY:
+                    FormSalary fs = new FormSalary();
+                    fs.MdiParent = this;
+                    fs.Dock = DockStyle.Fill;
+                    fs.Show();
                     break;
                 default: break;
             }
 
 
+        }
+        private void CreateInvoid(object sender, EventArgs e)
+        { 
+            string orderId = (string)sender;
+            MessageBox.Show(orderId);
         }
     }
 }

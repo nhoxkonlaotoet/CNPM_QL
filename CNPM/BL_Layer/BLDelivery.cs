@@ -36,12 +36,20 @@ namespace CNPM.BL_Layer
             return db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
         }
         // chi tiết của đơn hàng
-        public DataTable GetDetail(int orderId)
+        public DataTable GetDetailbyId(int orderId)
         {
             string sqlString = @"select SanPham.MaSP, TenLoai as TenSanPham, DungTich, Gia
                                 from ChiTietDonHang,SanPham,LoaiSanPham 
                                 where ChiTietDonHang.MaSP=SanPham.MaSP 
 		                        and SanPham.MaLoai=LoaiSanPham.MaLoai and MaDH=" + orderId;
+            return db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
+        }
+        public DataTable GetDetailbyNumber(int orderId)
+        {
+            string sqlString = @"select TenLoai as TenSanPham, count(SanPham.MaSP) as SoLuong,Gia as DonGia, sum(Gia) as ThanhTien
+                                from ChiTietDonHang,SanPham, LoaiSanPham 
+                                where ChiTietDonHang.MaSP=SanPham.MaSP and SanPham.MaLoai=LoaiSanPham.MaLoai and MaDH=" + orderId +
+                               "group by LoaiSanPham.MaLoai, TenLoai, Gia";
             return db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
         }
         public bool InsertDelivery(int empId, int orderId, DateTime time, ref string err)

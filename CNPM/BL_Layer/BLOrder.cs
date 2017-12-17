@@ -18,7 +18,19 @@ namespace CNPM.BL_Layer
         // đơn hàng
         public DataTable Orders()
         {
-            string sqlString = @"Select * from DonHang";
+            string sqlString = @"select MaDH,ThoiDiemDatHang,TongSoTien,DaThanhToan,MaKH,TrangThai, CAST(CASE 
+                                                  WHEN TrangThai=N'Đã nhận' and TongSoTien >DaThanhToan
+                                                     THEN  1
+                                                  ELSE 0
+                                             END AS bit ) as ThemHD
+                                from (select DonHang.*, CAST(CASE 
+                                                  WHEN DaThanhToan is null
+                                                     THEN 0 
+                                                  ELSE DaThanhToan
+                                             END AS int ) as DaThanhToan
+                                from DonHang left outer join (select MaDH, sum(TongSoTien) as DaThanhToan
+                                from HoaDon
+                                group by MaDH)as HD on DonHang.MaDH=HD.MaDH)as DH";
             return db.ExecuteQueryDataSet(sqlString, System.Data.CommandType.Text).Tables[0];
         }
       

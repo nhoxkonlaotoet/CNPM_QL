@@ -34,7 +34,9 @@
             this.dgvDetail = new System.Windows.Forms.DataGridView();
             this.label9 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.txtPhoneNumber = new System.Windows.Forms.TextBox();
             this.txtCost = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtAddress = new System.Windows.Forms.TextBox();
@@ -54,8 +56,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.gMapControl1 = new GMap.NET.WindowsForms.GMapControl();
-            this.txtPhoneNumber = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
+            this.btnTransfer = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetail)).BeginInit();
@@ -84,11 +86,13 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.btnRefresh);
+            this.panel3.Controls.Add(this.btnTransfer);
             this.panel3.Controls.Add(this.dgvDetail);
             this.panel3.Controls.Add(this.label9);
-            this.panel3.Location = new System.Drawing.Point(3, 395);
+            this.panel3.Location = new System.Drawing.Point(3, 386);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(468, 232);
+            this.panel3.Size = new System.Drawing.Size(468, 241);
             this.panel3.TabIndex = 4;
             // 
             // dgvDetail
@@ -105,17 +109,17 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvDetail.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvDetail.Location = new System.Drawing.Point(0, 24);
+            this.dgvDetail.Location = new System.Drawing.Point(0, 41);
             this.dgvDetail.Name = "dgvDetail";
             this.dgvDetail.ReadOnly = true;
-            this.dgvDetail.Size = new System.Drawing.Size(468, 187);
+            this.dgvDetail.Size = new System.Drawing.Size(468, 182);
             this.dgvDetail.TabIndex = 0;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(3, 0);
+            this.label9.Location = new System.Drawing.Point(0, 17);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(154, 21);
             this.label9.TabIndex = 1;
@@ -143,6 +147,16 @@
             this.panel2.Size = new System.Drawing.Size(271, 298);
             this.panel2.TabIndex = 3;
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(2, 230);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(45, 21);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "SĐT: ";
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -152,6 +166,16 @@
             this.label5.Size = new System.Drawing.Size(78, 21);
             this.label5.TabIndex = 1;
             this.label5.Text = "Tổng tiền:";
+            // 
+            // txtPhoneNumber
+            // 
+            this.txtPhoneNumber.BackColor = System.Drawing.Color.White;
+            this.txtPhoneNumber.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPhoneNumber.Location = new System.Drawing.Point(86, 227);
+            this.txtPhoneNumber.Name = "txtPhoneNumber";
+            this.txtPhoneNumber.ReadOnly = true;
+            this.txtPhoneNumber.Size = new System.Drawing.Size(177, 29);
+            this.txtPhoneNumber.TabIndex = 0;
             // 
             // txtCost
             // 
@@ -370,27 +394,25 @@
             this.gMapControl1.Zoom = 15D;
             this.gMapControl1.OnMarkerClick += new GMap.NET.WindowsForms.MarkerClick(this.gMapControl1_OnMarkerClick);
             // 
-            // txtPhoneNumber
+            // btnTransfer
             // 
-            this.txtPhoneNumber.BackColor = System.Drawing.Color.White;
-            this.txtPhoneNumber.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPhoneNumber.Location = new System.Drawing.Point(86, 227);
-            this.txtPhoneNumber.Name = "txtPhoneNumber";
-            this.txtPhoneNumber.ReadOnly = true;
-            this.txtPhoneNumber.Size = new System.Drawing.Size(177, 29);
-            this.txtPhoneNumber.TabIndex = 0;
+            this.btnTransfer.Location = new System.Drawing.Point(361, 8);
+            this.btnTransfer.Name = "btnTransfer";
+            this.btnTransfer.Size = new System.Drawing.Size(30, 30);
+            this.btnTransfer.TabIndex = 5;
+            this.btnTransfer.UseVisualStyleBackColor = true;
+            this.btnTransfer.Click += new System.EventHandler(this.btnChange_Click);
             // 
-            // label10
+            // btnRefresh
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(2, 230);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(45, 21);
-            this.label10.TabIndex = 1;
-            this.label10.Text = "SĐT: ";
+            this.btnRefresh.Location = new System.Drawing.Point(418, 8);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(30, 30);
+            this.btnRefresh.TabIndex = 6;
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
-            // FormController
+            // FormDelivery
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -399,7 +421,7 @@
             this.Controls.Add(this.gMapControl1);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FormController";
+            this.Name = "FormDelivery";
             this.Load += new System.EventHandler(this.FormController_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -442,6 +464,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtPhoneNumber;
+        private System.Windows.Forms.Button btnTransfer;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }
 

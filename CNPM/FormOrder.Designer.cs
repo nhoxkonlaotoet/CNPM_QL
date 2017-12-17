@@ -28,16 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label7 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnReload = new System.Windows.Forms.Button();
             this.dgvOrder = new System.Windows.Forms.DataGridView();
             this.MaDH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ThoiDiemDatHang = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TongSoTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DaThanhToan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MaKH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TrangThai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ThemHD = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
@@ -86,7 +89,6 @@
             this.txtCost = new System.Windows.Forms.TextBox();
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.txtAvailable = new System.Windows.Forms.TextBox();
-            this.btnReload = new System.Windows.Forms.Button();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrder)).BeginInit();
             this.pnlInfor.SuspendLayout();
@@ -123,6 +125,16 @@
             this.panel3.Size = new System.Drawing.Size(844, 344);
             this.panel3.TabIndex = 4;
             // 
+            // btnReload
+            // 
+            this.btnReload.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReload.Location = new System.Drawing.Point(789, 63);
+            this.btnReload.Name = "btnReload";
+            this.btnReload.Size = new System.Drawing.Size(35, 35);
+            this.btnReload.TabIndex = 7;
+            this.btnReload.UseVisualStyleBackColor = true;
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
+            // 
             // dgvOrder
             // 
             this.dgvOrder.AllowUserToAddRows = false;
@@ -135,16 +147,18 @@
             this.MaDH,
             this.ThoiDiemDatHang,
             this.TongSoTien,
+            this.DaThanhToan,
             this.MaKH,
-            this.TrangThai});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvOrder.DefaultCellStyle = dataGridViewCellStyle1;
+            this.TrangThai,
+            this.ThemHD});
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvOrder.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvOrder.Location = new System.Drawing.Point(3, 102);
             this.dgvOrder.Name = "dgvOrder";
             this.dgvOrder.ReadOnly = true;
@@ -153,17 +167,20 @@
             this.dgvOrder.Size = new System.Drawing.Size(836, 189);
             this.dgvOrder.TabIndex = 6;
             this.dgvOrder.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrder_CellClick);
+            this.dgvOrder.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvOrder_CellPainting);
             // 
             // MaDH
             // 
             this.MaDH.DataPropertyName = "MaDH";
-            this.MaDH.HeaderText = "Mã đơn hàng";
+            this.MaDH.FillWeight = 20F;
+            this.MaDH.HeaderText = "Mã ĐH";
             this.MaDH.Name = "MaDH";
             this.MaDH.ReadOnly = true;
             // 
             // ThoiDiemDatHang
             // 
             this.ThoiDiemDatHang.DataPropertyName = "ThoiDiemDatHang";
+            this.ThoiDiemDatHang.FillWeight = 40F;
             this.ThoiDiemDatHang.HeaderText = "Thời điểm đặt hàng";
             this.ThoiDiemDatHang.Name = "ThoiDiemDatHang";
             this.ThoiDiemDatHang.ReadOnly = true;
@@ -171,13 +188,23 @@
             // TongSoTien
             // 
             this.TongSoTien.DataPropertyName = "TongSoTien";
+            this.TongSoTien.FillWeight = 30F;
             this.TongSoTien.HeaderText = "Tổng số tiền";
             this.TongSoTien.Name = "TongSoTien";
             this.TongSoTien.ReadOnly = true;
             // 
+            // DaThanhToan
+            // 
+            this.DaThanhToan.DataPropertyName = "DaThanhToan";
+            this.DaThanhToan.FillWeight = 30F;
+            this.DaThanhToan.HeaderText = "Đã thanh toán";
+            this.DaThanhToan.Name = "DaThanhToan";
+            this.DaThanhToan.ReadOnly = true;
+            // 
             // MaKH
             // 
             this.MaKH.DataPropertyName = "MaKH";
+            this.MaKH.FillWeight = 20F;
             this.MaKH.HeaderText = "Mã khách";
             this.MaKH.Name = "MaKH";
             this.MaKH.ReadOnly = true;
@@ -185,9 +212,19 @@
             // TrangThai
             // 
             this.TrangThai.DataPropertyName = "TrangThai";
+            this.TrangThai.FillWeight = 30F;
             this.TrangThai.HeaderText = "Trạng thái";
             this.TrangThai.Name = "TrangThai";
             this.TrangThai.ReadOnly = true;
+            // 
+            // ThemHD
+            // 
+            this.ThemHD.DataPropertyName = "ThemHD";
+            this.ThemHD.FillWeight = 10F;
+            this.ThemHD.HeaderText = "Column1";
+            this.ThemHD.Name = "ThemHD";
+            this.ThemHD.ReadOnly = true;
+            this.ThemHD.Visible = false;
             // 
             // btnSearch
             // 
@@ -345,7 +382,6 @@
             // 
             this.cboStatus.BackColor = System.Drawing.Color.White;
             this.cboStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboStatus.Enabled = false;
             this.cboStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboStatus.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboStatus.FormattingEnabled = true;
@@ -561,14 +597,14 @@
             this.SoLuong,
             this.DonGia,
             this.ThanhTien});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDetail.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDetail.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvDetail.Location = new System.Drawing.Point(3, 364);
             this.dgvDetail.Name = "dgvDetail";
             this.dgvDetail.ReadOnly = true;
@@ -732,16 +768,6 @@
             this.txtAvailable.Size = new System.Drawing.Size(97, 29);
             this.txtAvailable.TabIndex = 2;
             // 
-            // btnReload
-            // 
-            this.btnReload.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReload.Location = new System.Drawing.Point(789, 63);
-            this.btnReload.Name = "btnReload";
-            this.btnReload.Size = new System.Drawing.Size(35, 35);
-            this.btnReload.TabIndex = 7;
-            this.btnReload.UseVisualStyleBackColor = true;
-            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
-            // 
             // FormOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -821,11 +847,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SoLuong;
         private System.Windows.Forms.DataGridViewTextBoxColumn DonGia;
         private System.Windows.Forms.DataGridViewTextBoxColumn ThanhTien;
+        private System.Windows.Forms.Button btnReload;
         private System.Windows.Forms.DataGridViewTextBoxColumn MaDH;
         private System.Windows.Forms.DataGridViewTextBoxColumn ThoiDiemDatHang;
         private System.Windows.Forms.DataGridViewTextBoxColumn TongSoTien;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DaThanhToan;
         private System.Windows.Forms.DataGridViewTextBoxColumn MaKH;
         private System.Windows.Forms.DataGridViewTextBoxColumn TrangThai;
-        private System.Windows.Forms.Button btnReload;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ThemHD;
     }
 }

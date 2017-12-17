@@ -8,22 +8,39 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CNPM.BL_Layer;
+using System.Windows.Forms.VisualStyles;
+
 namespace CNPM
 {
     public partial class FormOrder : Form
     {
+        public event EventHandler AddNewInvoice;
         bool block, blockDetail, add, addDetail;
         int curRow;
         private void dgvOrder_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (Block)
-            {
                 return;
-            }
             int r = dgvOrder.CurrentCell.RowIndex;
             if (r < 0)
                 r = curRow;
             curRow = r;
+            dgvOrder.Rows[r].Selected = true;
+            try
+            {
+                if (e.ColumnIndex == dgvOrder.Columns.IndexOf(dgvOrder.Columns["btn"])
+                    && (bool)dgvOrder.Rows[r].Cells["ThemHD"].Value)
+                {
+                    int orderId = int.Parse(dgvOrder.Rows[r].Cells["MaDH"].Value.ToString().Trim());
+                    AddInvoice f = new AddInvoice(orderId);
+                    f.ShowDialog();
+                    if(f.changed)
+                        LoadData();
+                  
+                }
+            }
+            catch { return; }
+
             string state = dgvOrder.Rows[r].Cells["TrangThai"].Value.ToString();
             txtId.Text = dgvOrder.Rows[r].Cells["MaDH"].Value.ToString();
             txtDate.Text = dgvOrder.Rows[r].Cells["ThoiDiemDatHang"].Value.ToString();
@@ -36,7 +53,7 @@ namespace CNPM
                 cbIsDelivered.Checked = true;
                 if (state.Contains("Đang chuyển"))
                     cboEmpID.Enabled = true;
-                else               
+                else
                     cboEmpID.Enabled = false;
             }
             else
@@ -74,11 +91,22 @@ namespace CNPM
         public FormOrder()
         {
             InitializeComponent();
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            dgvOrder.Columns.Add(btn);
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.Width = 40;
+            btn.HeaderText = "";
+            btn.Name = "btn";
+            btn.DefaultCellStyle.BackColor = Color.White;
+            btn.UseColumnTextForButtonValue = true;
+
         }
 
         private void FormOrder_Load(object sender, EventArgs e)
         {
             LoadData();
+          
+
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -142,7 +170,7 @@ namespace CNPM
             else
             {
                 int id = int.Parse(txtId.Text);
-                date =Convert.ToDateTime(txtDate.Text).ToString("MM/dd/yyyy HH:mm:ss");
+                date = Convert.ToDateTime(txtDate.Text).ToString("MM/dd/yyyy HH:mm:ss");
                 int cost = int.Parse(txtCost.Text);
                 string status = cboStatus.Text;
                 bool f;
@@ -191,10 +219,10 @@ namespace CNPM
                 return;
             string err = null;
             BLOrder db = new BLOrder();
-            for(int i=0;i< mess.quantity; i++)
+            for (int i = 0; i < mess.quantity; i++)
             {
-               
-                if(!db.DeleteDetail(int.Parse(txtId.Text), db.ProductIdOfOrder(int.Parse(txtId.Text), typeId), ref err))
+
+                if (!db.DeleteDetail(int.Parse(txtId.Text), db.ProductIdOfOrder(int.Parse(txtId.Text), typeId), ref err))
                 {
                     MessageBox.Show("Đã xóa " + i + "/" + mess.quantity + " sản phẩm");
                     return;
@@ -212,6 +240,7 @@ namespace CNPM
                 return;
             }
             int r = dgvDetail.CurrentCell.RowIndex;
+            dgvDetail.Rows[r].Selected = true;
 
             nudQuantity.Value = int.Parse(dgvDetail.Rows[r].Cells["SoLuong"].Value.ToString());
 
@@ -324,6 +353,33 @@ namespace CNPM
             OnLoad(e);
         }
 
+        private void dgvOrder_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+
+            //I supposed your button column is at index 0
+            if (e.ColumnIndex == 0)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+                int w = 24;
+                int h = 24;
+                var x = e.CellBounds.Left + (e.CellBounds.Width - w) / 2;
+                var y = e.CellBounds.Top + (e.CellBounds.Height - h) / 2;
+                Image img = Image.FromFile("coin.png");
+                if ((bool)dgvOrder.Rows[e.RowIndex].Cells["ThemHD"].Value)
+                {
+                    e.Graphics.DrawImage(img, new Rectangle(x, y, w, h));
+                    e.Graphics.DrawRectangle(new Pen(Color.White), e.CellBounds);
+                }
+                else
+                {
+                    e.Graphics.FillRectangle(new SolidBrush(Color.White), e.CellBounds);
+                }
+                e.Handled = true;
+            }
+        }
+
         private void btnCancelDetail_Click(object sender, EventArgs e)
         {
             dgvDetail_CellClick(null, null);
@@ -405,15 +461,18 @@ namespace CNPM
                 {
                     DateTime deliveryTime = new BLOrder().DeliveryTime(int.Parse(txtId.Text));
                     addDetail = false;
-                    if (!cboStatus.Text.Contains("Đã nhận") 
-                        && (deliveryTime == DateTime.MinValue||(DateTime.Now - deliveryTime).Minutes <= 10)) // chỉ đc thêm/ xóa sp khi đơn hàng chưa quá 10p
-                    { 
-                            btnAddDetail.Enabled = true;
+                    if (!cboStatus.Text.Contains("Đã nhận")
+                        && (deliveryTime == DateTime.MinValue || DateTime.Now - deliveryTime <= new TimeSpan(0,10,0))) // chỉ đc thêm/ xóa sp khi đơn hàng chưa quá 10p
+                    {
+                        btnAddDetail.Enabled = true;
+                        if (dgvDetail.Rows.Count == 0)
+                            btnRemoveDetail.Enabled = false;
+                        else
                             btnRemoveDetail.Enabled = true;
                     }
                     else
                     {
-                       
+
                         btnAddDetail.Enabled = false;
                         btnRemoveDetail.Enabled = false;
                     }
@@ -428,9 +487,5 @@ namespace CNPM
                 }
             }
         }
-
-
-
-
     }
 }

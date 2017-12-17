@@ -169,9 +169,9 @@
             this.label6.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(394, 19);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(294, 37);
+            this.label6.Size = new System.Drawing.Size(272, 37);
             this.label6.TabIndex = 4;
-            this.label6.Text = "Thông tin khách hàng";
+            this.label6.Text = "Thông tin nhân viên";
             // 
             // txtName
             // 
@@ -270,9 +270,9 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(187, 90);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(84, 21);
+            this.label1.Size = new System.Drawing.Size(65, 21);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Mã khách: ";
+            this.label1.Text = "Mã NV: ";
             // 
             // panel3
             // 
