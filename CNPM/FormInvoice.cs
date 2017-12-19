@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CNPM.BL_Layer;
 namespace CNPM
@@ -32,6 +25,7 @@ namespace CNPM
             BLInvoice db = new BLInvoice();
             int invoiceId = int.Parse(txtInvoiceId.Text.Trim()) ;
             dgvDetail.DataSource = db.Detail_Invoice(invoiceId);
+            dgvDetail_CellClick(null, null);
         }
         private void dgvInvoice_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -92,6 +86,9 @@ namespace CNPM
             txtCost.Text = dgvDetail.Rows[r].Cells["ThanhTien"].Value.ToString();
             txtPrice.Text = dgvDetail.Rows[r].Cells["DonGia"].Value.ToString();
             txtTypeName.Text = dgvDetail.Rows[r].Cells["TenLoai"].Value.ToString();
+            int typeId = int.Parse(dgvDetail.Rows[r].Cells["MaLoai"].Value.ToString());
+            try { pic.Image = MyConvert.ByteArrayToImage((byte[])new BLOrder().ProductImage(typeId).Rows[0][0]); }
+            catch { pic.Image = null; }
         }
     }
 }

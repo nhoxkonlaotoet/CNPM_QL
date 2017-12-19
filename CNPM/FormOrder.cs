@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CNPM.BL_Layer;
-using System.Windows.Forms.VisualStyles;
 
 namespace CNPM
 {
@@ -274,6 +268,9 @@ namespace CNPM
             int available = db.Available(typeId);
             txtPrice.Text = db.Price(typeId).ToString();
             txtAvailable.Text = available.ToString();
+         
+            try { pic.Image = MyConvert.ByteArrayToImage((byte[])new BLOrder().ProductImage(typeId).Rows[0][0]); }
+            catch { pic.Image = null; }
             if (available == 0)
                 nudQuantity.Value = 0;
             else

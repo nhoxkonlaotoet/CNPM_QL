@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CNPM.DB_Layer;
 using System.Data;
 
@@ -88,8 +84,8 @@ namespace CNPM.BL_Layer
 
         public DataTable FreeEmployees(int orderId)
         {
-            string sqlString = @" Select distinct NhanVien.MaNV, HoTen from NhanVien,GiaoHang 
-                                where NhanVien.MaNV=GiaoHang.MaNV and (MaDH="+orderId+" or TrangThai=N'Rảnh')";
+            string sqlString = @" Select NhanVien.MaNV, HoTen from NhanVien left outer join GiaoHang 
+                                on NhanVien.MaNV=GiaoHang.MaNV where (MaDH="+orderId+" or TrangThai=N'Rảnh')";
             return db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
         }
         public DataTable Employees()
@@ -189,7 +185,11 @@ namespace CNPM.BL_Layer
                 return int.Parse(dt.Rows[0]["MaSP"].ToString());
             return -1;
         }
+        public DataTable ProductImage(int productId)
+        {
+            string sqlString = @"select Hinh from SanPham,LoaiSanPham where SanPham.MaLoai=LoaiSanPham.MaLoai and LoaiSanPham.MaLoai=" + productId;
+            return db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
+        }
 
-        
     }
 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CNPM.DB_Layer;
+﻿using CNPM.DB_Layer;
 using System.Data;
 
 namespace CNPM.BL_Layer

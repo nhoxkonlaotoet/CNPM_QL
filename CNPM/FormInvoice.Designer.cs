@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.SoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ThanhTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label10 = new System.Windows.Forms.Label();
@@ -53,32 +53,32 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnReload = new System.Windows.Forms.Button();
             this.dgvInvoice = new System.Windows.Forms.DataGridView();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.label12 = new System.Windows.Forms.Label();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.pnlInfor = new System.Windows.Forms.Panel();
-            this.label8 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.pic = new System.Windows.Forms.PictureBox();
-            this.dgvDetail = new System.Windows.Forms.DataGridView();
-            this.MaLoai = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TenLoai = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtCusID = new System.Windows.Forms.TextBox();
-            this.txtEmpID = new System.Windows.Forms.TextBox();
-            this.txtOrderID = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtTotal = new System.Windows.Forms.TextBox();
             this.MaHD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MaDH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MaKH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MaNV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NgayIn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TongSoTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtQuantity = new System.Windows.Forms.TextBox();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.pnlInfor = new System.Windows.Forms.Panel();
+            this.txtEmpID = new System.Windows.Forms.TextBox();
+            this.txtCusID = new System.Windows.Forms.TextBox();
+            this.txtTotal = new System.Windows.Forms.TextBox();
+            this.txtOrderID = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pic = new System.Windows.Forms.PictureBox();
+            this.dgvDetail = new System.Windows.Forms.DataGridView();
+            this.MaLoai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenLoai = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtTypeName = new System.Windows.Forms.TextBox();
+            this.txtQuantity = new System.Windows.Forms.TextBox();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInvoice)).BeginInit();
             this.pnlInfor.SuspendLayout();
@@ -319,14 +319,14 @@
             this.MaNV,
             this.NgayIn,
             this.TongSoTien});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvInvoice.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvInvoice.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvInvoice.Location = new System.Drawing.Point(3, 102);
             this.dgvInvoice.Name = "dgvInvoice";
             this.dgvInvoice.ReadOnly = true;
@@ -335,6 +335,54 @@
             this.dgvInvoice.Size = new System.Drawing.Size(836, 189);
             this.dgvInvoice.TabIndex = 6;
             this.dgvInvoice.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvInvoice_CellClick);
+            // 
+            // MaHD
+            // 
+            this.MaHD.DataPropertyName = "MaHD";
+            this.MaHD.FillWeight = 20F;
+            this.MaHD.HeaderText = "Mã Hóa đơn";
+            this.MaHD.Name = "MaHD";
+            this.MaHD.ReadOnly = true;
+            // 
+            // MaDH
+            // 
+            this.MaDH.DataPropertyName = "MaDH";
+            this.MaDH.FillWeight = 20F;
+            this.MaDH.HeaderText = "Mã Đơn hàng";
+            this.MaDH.Name = "MaDH";
+            this.MaDH.ReadOnly = true;
+            // 
+            // MaKH
+            // 
+            this.MaKH.DataPropertyName = "MaKH";
+            this.MaKH.FillWeight = 20F;
+            this.MaKH.HeaderText = "Mã khách";
+            this.MaKH.Name = "MaKH";
+            this.MaKH.ReadOnly = true;
+            // 
+            // MaNV
+            // 
+            this.MaNV.DataPropertyName = "MaNV";
+            this.MaNV.FillWeight = 20F;
+            this.MaNV.HeaderText = "Mã Nhân viên";
+            this.MaNV.Name = "MaNV";
+            this.MaNV.ReadOnly = true;
+            // 
+            // NgayIn
+            // 
+            this.NgayIn.DataPropertyName = "NgayIn";
+            this.NgayIn.FillWeight = 40F;
+            this.NgayIn.HeaderText = "Ngày in";
+            this.NgayIn.Name = "NgayIn";
+            this.NgayIn.ReadOnly = true;
+            // 
+            // TongSoTien
+            // 
+            this.TongSoTien.DataPropertyName = "TongSoTien";
+            this.TongSoTien.FillWeight = 30F;
+            this.TongSoTien.HeaderText = "Tổng số tiền";
+            this.TongSoTien.Name = "TongSoTien";
+            this.TongSoTien.ReadOnly = true;
             // 
             // btnSearch
             // 
@@ -411,6 +459,66 @@
             this.pnlInfor.Size = new System.Drawing.Size(844, 256);
             this.pnlInfor.TabIndex = 8;
             // 
+            // txtEmpID
+            // 
+            this.txtEmpID.BackColor = System.Drawing.Color.White;
+            this.txtEmpID.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmpID.Location = new System.Drawing.Point(143, 190);
+            this.txtEmpID.Name = "txtEmpID";
+            this.txtEmpID.ReadOnly = true;
+            this.txtEmpID.Size = new System.Drawing.Size(94, 29);
+            this.txtEmpID.TabIndex = 2;
+            // 
+            // txtCusID
+            // 
+            this.txtCusID.BackColor = System.Drawing.Color.White;
+            this.txtCusID.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCusID.Location = new System.Drawing.Point(143, 130);
+            this.txtCusID.Name = "txtCusID";
+            this.txtCusID.ReadOnly = true;
+            this.txtCusID.Size = new System.Drawing.Size(94, 29);
+            this.txtCusID.TabIndex = 2;
+            // 
+            // txtTotal
+            // 
+            this.txtTotal.BackColor = System.Drawing.Color.White;
+            this.txtTotal.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotal.Location = new System.Drawing.Point(666, 190);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.ReadOnly = true;
+            this.txtTotal.Size = new System.Drawing.Size(173, 29);
+            this.txtTotal.TabIndex = 2;
+            // 
+            // txtOrderID
+            // 
+            this.txtOrderID.BackColor = System.Drawing.Color.White;
+            this.txtOrderID.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOrderID.Location = new System.Drawing.Point(367, 71);
+            this.txtOrderID.Name = "txtOrderID";
+            this.txtOrderID.ReadOnly = true;
+            this.txtOrderID.Size = new System.Drawing.Size(94, 29);
+            this.txtOrderID.TabIndex = 2;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(276, 74);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(61, 21);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Mã ĐH:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(576, 193);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(82, 21);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Tổng tiền: ";
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -447,6 +555,7 @@
             this.pic.Location = new System.Drawing.Point(3, 85);
             this.pic.Name = "pic";
             this.pic.Size = new System.Drawing.Size(168, 204);
+            this.pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pic.TabIndex = 7;
             this.pic.TabStop = false;
             // 
@@ -464,14 +573,14 @@
             this.SoLuong,
             this.DonGia,
             this.ThanhTien});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDetail.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDetail.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvDetail.Location = new System.Drawing.Point(3, 364);
             this.dgvDetail.Name = "dgvDetail";
             this.dgvDetail.ReadOnly = true;
@@ -497,113 +606,14 @@
             this.TenLoai.Name = "TenLoai";
             this.TenLoai.ReadOnly = true;
             // 
-            // label4
+            // txtTypeName
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(276, 74);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(61, 21);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Mã ĐH:";
-            // 
-            // txtCusID
-            // 
-            this.txtCusID.BackColor = System.Drawing.Color.White;
-            this.txtCusID.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCusID.Location = new System.Drawing.Point(143, 130);
-            this.txtCusID.Name = "txtCusID";
-            this.txtCusID.ReadOnly = true;
-            this.txtCusID.Size = new System.Drawing.Size(94, 29);
-            this.txtCusID.TabIndex = 2;
-            // 
-            // txtEmpID
-            // 
-            this.txtEmpID.BackColor = System.Drawing.Color.White;
-            this.txtEmpID.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmpID.Location = new System.Drawing.Point(143, 190);
-            this.txtEmpID.Name = "txtEmpID";
-            this.txtEmpID.ReadOnly = true;
-            this.txtEmpID.Size = new System.Drawing.Size(94, 29);
-            this.txtEmpID.TabIndex = 2;
-            // 
-            // txtOrderID
-            // 
-            this.txtOrderID.BackColor = System.Drawing.Color.White;
-            this.txtOrderID.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOrderID.Location = new System.Drawing.Point(367, 71);
-            this.txtOrderID.Name = "txtOrderID";
-            this.txtOrderID.ReadOnly = true;
-            this.txtOrderID.Size = new System.Drawing.Size(94, 29);
-            this.txtOrderID.TabIndex = 2;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(576, 193);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(82, 21);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "Tổng tiền: ";
-            // 
-            // txtTotal
-            // 
-            this.txtTotal.BackColor = System.Drawing.Color.White;
-            this.txtTotal.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotal.Location = new System.Drawing.Point(666, 190);
-            this.txtTotal.Name = "txtTotal";
-            this.txtTotal.ReadOnly = true;
-            this.txtTotal.Size = new System.Drawing.Size(173, 29);
-            this.txtTotal.TabIndex = 2;
-            // 
-            // MaHD
-            // 
-            this.MaHD.DataPropertyName = "MaHD";
-            this.MaHD.FillWeight = 20F;
-            this.MaHD.HeaderText = "Mã Hóa đơn";
-            this.MaHD.Name = "MaHD";
-            this.MaHD.ReadOnly = true;
-            // 
-            // MaDH
-            // 
-            this.MaDH.DataPropertyName = "MaDH";
-            this.MaDH.FillWeight = 20F;
-            this.MaDH.HeaderText = "Mã Đơn hàng";
-            this.MaDH.Name = "MaDH";
-            this.MaDH.ReadOnly = true;
-            // 
-            // MaKH
-            // 
-            this.MaKH.DataPropertyName = "MaKH";
-            this.MaKH.FillWeight = 20F;
-            this.MaKH.HeaderText = "Mã khách";
-            this.MaKH.Name = "MaKH";
-            this.MaKH.ReadOnly = true;
-            // 
-            // MaNV
-            // 
-            this.MaNV.DataPropertyName = "MaNV";
-            this.MaNV.FillWeight = 20F;
-            this.MaNV.HeaderText = "Mã Nhân viên";
-            this.MaNV.Name = "MaNV";
-            this.MaNV.ReadOnly = true;
-            // 
-            // NgayIn
-            // 
-            this.NgayIn.DataPropertyName = "NgayIn";
-            this.NgayIn.FillWeight = 40F;
-            this.NgayIn.HeaderText = "Ngày in";
-            this.NgayIn.Name = "NgayIn";
-            this.NgayIn.ReadOnly = true;
-            // 
-            // TongSoTien
-            // 
-            this.TongSoTien.DataPropertyName = "TongSoTien";
-            this.TongSoTien.FillWeight = 30F;
-            this.TongSoTien.HeaderText = "Tổng số tiền";
-            this.TongSoTien.Name = "TongSoTien";
-            this.TongSoTien.ReadOnly = true;
+            this.txtTypeName.BackColor = System.Drawing.Color.White;
+            this.txtTypeName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTypeName.Location = new System.Drawing.Point(281, 87);
+            this.txtTypeName.Name = "txtTypeName";
+            this.txtTypeName.Size = new System.Drawing.Size(178, 29);
+            this.txtTypeName.TabIndex = 2;
             // 
             // txtQuantity
             // 
@@ -613,15 +623,6 @@
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(97, 29);
             this.txtQuantity.TabIndex = 2;
-            // 
-            // txtTypeName
-            // 
-            this.txtTypeName.BackColor = System.Drawing.Color.White;
-            this.txtTypeName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTypeName.Location = new System.Drawing.Point(281, 87);
-            this.txtTypeName.Name = "txtTypeName";
-            this.txtTypeName.Size = new System.Drawing.Size(178, 29);
-            this.txtTypeName.TabIndex = 2;
             // 
             // FormInvoice
             // 
