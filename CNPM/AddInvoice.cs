@@ -46,6 +46,7 @@ namespace CNPM
         {
             BLInvoice db = new BLInvoice();
             txtDate.Text = DateTime.Now.ToString();
+            cboOrderId.DataSource = null;
             cboOrderId.DataSource = db.NotPaidEnoughOrders();
             cboOrderId.DisplayMember = "MaDH";
             if (orderId != -1)
@@ -69,7 +70,6 @@ namespace CNPM
                 int invoiceId = db.RecentlyInvoiceId(orderId);
                 foreach (DataGridViewRow rowType in dgvDetail.Rows)
                 {
-                    MessageBox.Show(rowType.Cells["Check"].Value + "");
                     if ((bool)rowType.Cells[0].Value)
                     {
                         int n = (int)rowType.Cells["SoLuong"].Value;
@@ -107,8 +107,11 @@ namespace CNPM
             if (!char.IsDigit(cboOrderId.Text[0]))
                 return;
             BLInvoice db = new BLInvoice();
-            int oderId = int.Parse(cboOrderId.Text);
-            DataTable dt = db.OrderInfor(orderId);
+            int oderId =int.Parse(cboOrderId.Text);
+            
+            DataTable dt= db.OrderInfor(oderId);
+          
+
             if (dt.Rows.Count > 0)
             {
                 txtCusName.Text = dt.Rows[0]["TenKhach"].ToString();

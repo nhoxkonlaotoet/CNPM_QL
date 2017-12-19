@@ -17,7 +17,8 @@ namespace CNPM.BL_Layer
         }
         public DataTable Invoices()
         {
-            return null;
+            string sqlString = @"select MaHD,HoaDon.MaDH,MaKH,MaNV, NgayIn,HoaDon.TongSoTien from HoaDon, DonHang where HoaDon.MaDH=DonHang.MaDH";
+            return db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
         }
         public bool Insert(string date, int cost, int orderId, int empId, ref string err)
         {
@@ -39,25 +40,29 @@ namespace CNPM.BL_Layer
         }
         public DataTable NotPaidEnoughOrders()
         {
-            string sqlString = @"select MaDH 
-                                from (select DonHang.MaDH,DonHang.TongSoTien,  CAST(CASE 
-							                                                     WHEN HoaDon.TongSoTien is null
-								                                                    THEN 0 
-                                                                                 ELSE HoaDon.TongSoTien
-                                                                                    END AS int ) as DaThanhToan
-                                     from DonHang left outer join HoaDon on DonHang.MaDH=HoaDon.MaDH
-                                     where DonHang.TrangThai=N'Đã nhận')as A
-                                 where TongSoTien>DaThanhToan";
+            string sqlString = @"select MaDH
+from (select DonHang.MaDH,DonHang.TongSoTien,  CAST(CASE 
+													WHEN HoaDon.TongSoTien is null
+								                        THEN 0 
+                                                    ELSE HoaDon.TongSoTien
+                                                        END AS int ) as DaThanhToan
+	from DonHang left outer join HoaDon on DonHang.MaDH=HoaDon.MaDH
+	where DonHang.TrangThai=N'Đã nhận')as A
+group by MaDH, TongSoTien
+having  sum(DaThanhToan) <TongSoTien";
             return db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
         }
         public DataTable OrderInfor(int orderId)
         {
-            string sqlString = @"select KhachHang.MaKH, KhachHang.HoTen as TenKhach,NhanVien.MaNV, NhanVien.HoTen as TenNhanVien
-                                 from DonHang, KhachHang,GiaoHang, NhanVien 
-                                 where DonHang.MaKH=KhachHang.MaKH 
-                                 and DonHang.MaDH=GiaoHang.MaDH 
-                                 and GiaoHang.MaNV=NhanVien.MaNV
-                                 and DonHang.MaDH=" + orderId;
+            string sqlString = @"select MaKH,TenKhach,MaNV,TenNhanVien
+from 	(select DonHang.MaDH, KhachHang.MaKH, KhachHang.HoTen as TenKhach
+    from DonHang left outer join KhachHang
+    on DonHang.MaKH=KhachHang.MaKH 
+    where DonHang.MaDH="+orderId+@")as DH left outer join
+(select MaDH, NhanVien.MaNV, HoTen as TenNhanVien 
+from NhanVien,GiaoHang
+where NhanVien.MaNV=GiaoHang.MaNV
+and MaDH="+orderId+@")as GH on DH.MaDH=GH.MaDH";
             return db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
         }
         public DataTable Detail(int orderId)
@@ -93,6 +98,32 @@ except select ChiTietHoaDon.MaSP
             if (dt.Rows.Count > 0)
                 return int.Parse(dt.Rows[0][0].ToString());
             return -1;
+        }
+        public string EmpName(int empId)
+        {
+            string sqlString = @"select HoTen from NhanVien where MaNV=" + empId;
+            DataTable dt = db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
+            if (dt.Rows.Count > 0)
+                return dt.Rows[0][0].ToString();
+            else
+                return null;
+        }
+        public string CusName(int cusId)
+        {
+            string sqlString = @"select HoTen from KhachHang where MaKH=" + cusId;
+            DataTable dt = db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
+            if (dt.Rows.Count > 0)
+                return dt.Rows[0][0].ToString();
+            else
+                return null;
+        }
+        public DataTable Detail_Invoice(int invoiceId)
+        {
+            string sqlString = @"select LoaiSanPham.MaLoai, TenLoai, count(SanPham.MaSP) as SoLuong,Gia as DonGia, sum(Gia) as ThanhTien
+from ChiTietHoaDon,SanPham, LoaiSanPham 
+where ChiTietHoaDon.MaSP=SanPham.MaSP and SanPham.MaLoai=LoaiSanPham.MaLoai and MaHD="+ invoiceId+@"
+group by LoaiSanPham.MaLoai, TenLoai, Gia";
+            return db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
         }
     }
 }

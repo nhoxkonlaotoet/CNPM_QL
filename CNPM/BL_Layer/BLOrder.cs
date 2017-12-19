@@ -31,7 +31,7 @@ namespace CNPM.BL_Layer
                                 from DonHang left outer join (select MaDH, sum(TongSoTien) as DaThanhToan
                                 from HoaDon
                                 group by MaDH)as HD on DonHang.MaDH=HD.MaDH)as DH";
-            return db.ExecuteQueryDataSet(sqlString, System.Data.CommandType.Text).Tables[0];
+            return db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
         }
       
         public bool Insert(string date, int cost, int cusId, string status, ref string err)

@@ -25,7 +25,7 @@ namespace CNPM.BL_Layer
 								                                                where DonHang.MaDH=ChiTietDonHang.MaDH and MaLoai=0 
 								                                                and ChiTietDonHang.masp=sanpham.masp and SanPham.TrangThai!=N'Còn'
 								                                                group by ChiTietDonHang.MaSP) as A
-                                                    where ChiTietDonHang.MaSP = A.MaSP and DonHang.MaDH=ChiTietDonHang.MaDH and DonHang.TrangThai!=N'Đã gửi'
+                                                    where ChiTietDonHang.MaSP = A.MaSP and DonHang.MaDH=ChiTietDonHang.MaDH and DonHang.TrangThai=N'Đã nhận'
                                                     and DonHang.ThoiDiemDatHang=A.ThoiDiemGanNhat 
                                                     group by MaKH) as B
                                 on KhachHang.MaKH=B.MaKH";
@@ -33,7 +33,7 @@ namespace CNPM.BL_Layer
         } 
         public DataTable PhoneNumbers()
         {
-            string sqlString = @"select SDT from TaiKhoan except select SDT from TaiKhoan where QuyenHan=N'Admin' or QuyenHan=N'Nhân viên' or QuyenHan=N'Quản lí'";
+            string sqlString = @"select SDT from TaiKhoan where QuyenHan=N'Khách'";
             return db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
         }
         public byte[] Avatar(int customerId)

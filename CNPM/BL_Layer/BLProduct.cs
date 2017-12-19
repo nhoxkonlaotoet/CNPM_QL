@@ -86,6 +86,5 @@ namespace CNPM.BL_Layer
                 return int.Parse(dt.Rows[0]["A"].ToString());
             return -1;
         }
-     
     }
 }

@@ -27,6 +27,8 @@ namespace CNPM
 
         private void dgvCustomer_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (Block)
+                return;
             int r = dgvCustomer.CurrentCell.RowIndex;
             txtId.Text = dgvCustomer.Rows[r].Cells["MaKH"].Value.ToString();
             txtName.Text = dgvCustomer.Rows[r].Cells["HoTen"].Value.ToString();
@@ -101,7 +103,7 @@ namespace CNPM
             int age;
             try { age = int.Parse(txtAge.Text); }
             catch { MessageBox.Show("Tuổi phải là số"); return; }
-            string phoneNumber = cboPhoneNumber.Text;
+            string phoneNumber = cboPhoneNumber.Text.Trim();
             foreach (char c in phoneNumber)
                 if (!char.IsDigit(c))
                 {
@@ -198,10 +200,14 @@ namespace CNPM
                     pnlInfor.Enabled = true;
                     if (add)
                     {
+                        cboPhoneNumber.Enabled = true;
                         txtId.Enabled = true;
                     }
                     else
+                    {
+                        cboPhoneNumber.Enabled = false;
                         txtId.Enabled = false;
+                    }
                     btnAdd.Enabled = false;
                     btnEdit.Enabled = false;
                     btnDelete.Enabled = false;

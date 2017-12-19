@@ -61,6 +61,7 @@
     <Compile Include="BL_Layer\BLAccount.cs" />
     <Compile Include="BL_Layer\BLDelivery.cs" />
     <Compile Include="BL_Layer\BLCustomer.cs" />
+    <Compile Include="BL_Layer\BLEmployee.cs" />
     <Compile Include="BL_Layer\BLInvoice.cs" />
     <Compile Include="BL_Layer\BLLogin.cs" />
     <Compile Include="BL_Layer\BLOrder.cs" />

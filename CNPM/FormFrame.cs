@@ -84,7 +84,6 @@ namespace CNPM
                     FormOrder fo = new FormOrder();
                     fo.MdiParent = this;
                     fo.Dock = DockStyle.Fill;
-                    fo.AddNewInvoice += new EventHandler(CreateInvoid);
                     fo.Show();
                     break;
                 case INVOICE:
