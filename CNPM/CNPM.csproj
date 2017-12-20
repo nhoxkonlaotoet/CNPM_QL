@@ -52,10 +52,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddInvoice.cs">
+    <Compile Include="Presentation_Layer\AddInvoice.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddInvoice.Designer.cs">
+    <Compile Include="Presentation_Layer\AddInvoice.Designer.cs">
       <DependentUpon>AddInvoice.cs</DependentUpon>
     </Compile>
     <Compile Include="BL_Layer\BLAccount.cs" />
@@ -69,128 +69,128 @@
     <Compile Include="BL_Layer\BLProduct.cs" />
     <Compile Include="BL_Layer\BLSalary.cs" />
     <Compile Include="DA_Layer\DBMain.cs" />
-    <Compile Include="FormAccount.cs">
+    <Compile Include="Presentation_Layer\FormAccount.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAccount.Designer.cs">
+    <Compile Include="Presentation_Layer\FormAccount.Designer.cs">
       <DependentUpon>FormAccount.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormDelivery.cs">
+    <Compile Include="Presentation_Layer\FormDelivery.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormDelivery.Designer.cs">
+    <Compile Include="Presentation_Layer\FormDelivery.Designer.cs">
       <DependentUpon>FormDelivery.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormCustomer.cs">
+    <Compile Include="Presentation_Layer\FormCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCustomer.Designer.cs">
+    <Compile Include="Presentation_Layer\FormCustomer.Designer.cs">
       <DependentUpon>FormCustomer.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormEmployee.cs">
+    <Compile Include="Presentation_Layer\FormEmployee.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormEmployee.Designer.cs">
+    <Compile Include="Presentation_Layer\FormEmployee.Designer.cs">
       <DependentUpon>FormEmployee.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormFeedback.cs">
+    <Compile Include="Presentation_Layer\FormFeedback.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormFeedback.Designer.cs">
+    <Compile Include="Presentation_Layer\FormFeedback.Designer.cs">
       <DependentUpon>FormFeedback.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormFrame.cs">
+    <Compile Include="Presentation_Layer\FormFrame.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormFrame.Designer.cs">
+    <Compile Include="Presentation_Layer\FormFrame.Designer.cs">
       <DependentUpon>FormFrame.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormInvoice.cs">
+    <Compile Include="Presentation_Layer\FormInvoice.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormInvoice.Designer.cs">
+    <Compile Include="Presentation_Layer\FormInvoice.Designer.cs">
       <DependentUpon>FormInvoice.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormLogin.cs">
+    <Compile Include="Presentation_Layer\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormLogin.Designer.cs">
+    <Compile Include="Presentation_Layer\FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormMap.cs">
+    <Compile Include="Presentation_Layer\FormMap.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMap.Designer.cs">
+    <Compile Include="Presentation_Layer\FormMap.Designer.cs">
       <DependentUpon>FormMap.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormOrder.cs">
+    <Compile Include="Presentation_Layer\FormOrder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormOrder.Designer.cs">
+    <Compile Include="Presentation_Layer\FormOrder.Designer.cs">
       <DependentUpon>FormOrder.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormProduct.cs">
+    <Compile Include="Presentation_Layer\FormProduct.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormProduct.Designer.cs">
+    <Compile Include="Presentation_Layer\FormProduct.Designer.cs">
       <DependentUpon>FormProduct.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormSalary.cs">
+    <Compile Include="Presentation_Layer\FormSalary.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormSalary.Designer.cs">
+    <Compile Include="Presentation_Layer\FormSalary.Designer.cs">
       <DependentUpon>FormSalary.cs</DependentUpon>
     </Compile>
-    <Compile Include="MyConvert.cs" />
-    <Compile Include="MyMessageBox.cs">
+    <Compile Include="Presentation_Layer\MyConvert.cs" />
+    <Compile Include="Presentation_Layer\MyMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MyMessageBox.Designer.cs">
+    <Compile Include="Presentation_Layer\MyMessageBox.Designer.cs">
       <DependentUpon>MyMessageBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Values.cs" />
+    <Compile Include="Presentation_Layer\Values.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AddInvoice.resx">
+    <EmbeddedResource Include="Presentation_Layer\AddInvoice.resx">
       <DependentUpon>AddInvoice.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAccount.resx">
+    <EmbeddedResource Include="Presentation_Layer\FormAccount.resx">
       <DependentUpon>FormAccount.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormDelivery.resx">
+    <EmbeddedResource Include="Presentation_Layer\FormDelivery.resx">
       <DependentUpon>FormDelivery.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormCustomer.resx">
+    <EmbeddedResource Include="Presentation_Layer\FormCustomer.resx">
       <DependentUpon>FormCustomer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormEmployee.resx">
+    <EmbeddedResource Include="Presentation_Layer\FormEmployee.resx">
       <DependentUpon>FormEmployee.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormFeedback.resx">
+    <EmbeddedResource Include="Presentation_Layer\FormFeedback.resx">
       <DependentUpon>FormFeedback.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormFrame.resx">
+    <EmbeddedResource Include="Presentation_Layer\FormFrame.resx">
       <DependentUpon>FormFrame.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormInvoice.resx">
+    <EmbeddedResource Include="Presentation_Layer\FormInvoice.resx">
       <DependentUpon>FormInvoice.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormLogin.resx">
+    <EmbeddedResource Include="Presentation_Layer\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormMap.resx">
+    <EmbeddedResource Include="Presentation_Layer\FormMap.resx">
       <DependentUpon>FormMap.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormOrder.resx">
+    <EmbeddedResource Include="Presentation_Layer\FormOrder.resx">
       <DependentUpon>FormOrder.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormProduct.resx">
+    <EmbeddedResource Include="Presentation_Layer\FormProduct.resx">
       <DependentUpon>FormProduct.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormSalary.resx">
+    <EmbeddedResource Include="Presentation_Layer\FormSalary.resx">
       <DependentUpon>FormSalary.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MyMessageBox.resx">
+    <EmbeddedResource Include="Presentation_Layer\MyMessageBox.resx">
       <DependentUpon>MyMessageBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -215,6 +215,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
