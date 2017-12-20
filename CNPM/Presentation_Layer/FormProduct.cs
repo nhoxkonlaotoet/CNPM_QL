@@ -26,6 +26,11 @@ namespace CNPM
             btnDeleteType.Image = Image.FromFile(Values.URL_DELETE);
             btnSearch.Image = Image.FromFile(Values.URL_SEARCH);
             btnReload.Image = Image.FromFile(Values.URL_REFRESH);
+            cboStatus.Items.Add(Values.PRODUCT_STATE_AVAILABLE);
+            cboStatus.Items.Add(Values.PRODUCT_STATE_ORDERED);
+            cboStatus.Items.Add(Values.PRODUCT_STATE_SOLD);
+            cboStatus.Items.Add(Values.PRODUCT_STATE_BROKEN);
+
         }
         private void FormProduct_Load(object sender, EventArgs e)
         {
@@ -244,7 +249,7 @@ namespace CNPM
                 {
                     if (add)
                     {
-                        cboStatus.SelectedIndex = cboStatus.FindString("Còn");
+                        cboStatus.SelectedIndex = cboStatus.FindString(Values.PRODUCT_STATE_AVAILABLE);
                         cboStatus.Enabled = false;
                         lblId.Hide();
                         txtId.Hide();

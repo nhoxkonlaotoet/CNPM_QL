@@ -10,7 +10,9 @@ namespace CNPM.DA_Layer
 {
     public class DBMain
     {
-        string strConnectionString = "Server= 192.168.173.1; Database=QuanLyBanNuoc; User=abcdef; Password=123456";
+        string strConnectionString = @"Server= 192.168.173.1; 
+                                        Database=QuanLyBanNuoc; 
+                                        User=abcdef; Password=123456";
 
         SqlConnection conn = null;
         SqlCommand comm = null;

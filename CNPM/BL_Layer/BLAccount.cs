@@ -14,7 +14,7 @@ namespace CNPM.BL_Layer
         public DataTable Accounts()
         {
             string sqlString = @"select SDT,HoTen as ChuSoHuu, QuyenHan, TinhTrang, NgayKichHoat 
-from TaiKhoan left outer join (select SoDienThoai, HoTen 
+                                from TaiKhoan left outer join (select SoDienThoai, HoTen 
                                 from NhanVien 
                                 union 
                                 select SoDienThoai, HoTen  
