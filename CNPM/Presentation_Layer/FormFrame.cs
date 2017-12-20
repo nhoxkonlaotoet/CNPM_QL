@@ -73,7 +73,7 @@ namespace CNPM
             btnSalary.Tag = SALARY;
             btnFeedback.Tag = FEEDBACK;
             btnAccount.Tag = ACCOUNT;
-
+            Icon = new Icon("water.ico");
         }
         private void btnMenu_Click(object sender, EventArgs e)
         {

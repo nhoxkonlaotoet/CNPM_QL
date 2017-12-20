@@ -1,7 +1,6 @@
 D:\HK5\SE\CNPM\CNPM\bin\Debug\CNPM.exe.config
 D:\HK5\SE\CNPM\CNPM\bin\Debug\CNPM.exe
 D:\HK5\SE\CNPM\CNPM\bin\Debug\CNPM.pdb
-D:\HK5\SE\CNPM\CNPM\obj\Debug\CNPM.csprojResolveAssemblyReference.cache
 D:\HK5\SE\CNPM\CNPM\obj\Debug\CNPM.FormFrame.resources
 D:\HK5\SE\CNPM\CNPM\obj\Debug\CNPM.Properties.Resources.resources
 D:\HK5\SE\CNPM\CNPM\obj\Debug\CNPM.csproj.GenerateResource.Cache

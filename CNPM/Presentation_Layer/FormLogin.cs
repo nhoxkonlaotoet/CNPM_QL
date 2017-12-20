@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using CNPM.BL_Layer;
+using System.Drawing;
+
 namespace CNPM
 {
     public partial class FormLogin : Form
@@ -10,10 +12,16 @@ namespace CNPM
         public FormLogin()
         {
             InitializeComponent();
-            txtID.Text = "chu";
-            txtPassword.Text = "123456";
+            init();
+          
         }
 
+        void init()
+        {
+            txtID.Text = "chu";
+            txtPassword.Text = "123456";
+            Icon = new Icon("water.ico");
+        }
         private void btnOK_Click(object sender, EventArgs e)
         {
             string id = txtID.Text;

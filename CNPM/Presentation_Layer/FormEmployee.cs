@@ -18,6 +18,7 @@ namespace CNPM
         {
             btnEditAcc.Image = Image.FromFile(Values.URL_EDIT);
             btnSearch.Image = Image.FromFile(Values.URL_SEARCH);
+            btnReload.Image = Image.FromFile(Values.URL_REFRESH);
             cboStatus.Items.Add(Values.EMP_STATE_FREE);
             cboStatus.Items.Add(Values.EMP_STATE_BUSY);
          

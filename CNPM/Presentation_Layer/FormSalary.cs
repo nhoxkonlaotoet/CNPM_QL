@@ -28,6 +28,7 @@ namespace CNPM
             for (int i = 1; i <= 12; i++)
                 cboMonth.Items.Add(i);
             cboMonth.Items.Add(ALLYEAR);
+            btnRefresh.Image = Image.FromFile(Values.URL_REFRESH);
         }
 
         private void FormSalary_Load(object sender, EventArgs e)
@@ -35,6 +36,12 @@ namespace CNPM
             cboYear.SelectedIndex = cboYear.FindString(DateTime.Now.Year.ToString());
             LoadData();
         }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
         void LoadData()
         {
             BLSalary db = new BLSalary();
