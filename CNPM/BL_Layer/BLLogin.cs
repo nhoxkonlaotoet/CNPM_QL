@@ -1,4 +1,6 @@
-﻿using CNPM.DB_Layer;
+﻿using CNPM.DA_Layer;
+using System.Data;
+
 namespace CNPM.BL_Layer
 {
     public class BLLogin
@@ -15,6 +17,14 @@ namespace CNPM.BL_Layer
             if (f == 1)
                 return true;
             return false;
+        }
+        public string Role(string id)
+        {
+            string sqlString = @"select QuyenHan from TaiKhoan where SDT='" + id + "'";
+            DataTable dt = db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
+            if (dt.Rows.Count > 0)
+                return dt.Rows[0][0].ToString();
+            return null;
         }
     }
 }

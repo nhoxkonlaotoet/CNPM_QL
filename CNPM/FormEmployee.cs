@@ -16,12 +16,22 @@ namespace CNPM
         }
         void init()
         {
-            btnEditAcc.Image = Image.FromFile("edit.png");
-            btnSearch.Image = Image.FromFile("search.png");
+            btnEditAcc.Image = Image.FromFile(Values.URL_EDIT);
+            btnSearch.Image = Image.FromFile(Values.URL_SEARCH);
+            cboStatus.Items.Add(Values.EMP_STATE_FREE);
+            cboStatus.Items.Add(Values.EMP_STATE_BUSY);
+         
         }
         private void FormEmployee_Load(object sender, EventArgs e)
         {
             LoadData();
+            BLLogin db = new BLLogin();
+            if (db.Role(((FormFrame)MdiParent).User) != Values.ROLE_ADMIN)
+            {
+                pnlAccount.Hide();
+                pnlInfor.Location = new Point(pnlInfor.Location.X + 200, pnlInfor.Location.Y);
+                pnlList.Location = new Point(pnlList.Location.X + 200, pnlList.Location.Y);
+            }
         }
         void LoadData()
         {
@@ -119,6 +129,7 @@ namespace CNPM
             if (Block)
                 return;
             int r = dgvEmployee.CurrentCell.RowIndex;
+            dgvEmployee.Rows[r].Selected = true;
             txtEmpId.Text = dgvEmployee.Rows[r].Cells["MaNV"].Value.ToString();
             txtName.Text = dgvEmployee.Rows[r].Cells["HoTen"].Value.ToString();
             txtAge.Text = dgvEmployee.Rows[r].Cells["Tuoi"].Value.ToString();
@@ -146,6 +157,11 @@ namespace CNPM
         {
             openFileDialog1.ShowDialog();
 
+        }
+
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            LoadData();
         }
 
         public bool Block
@@ -195,6 +211,7 @@ namespace CNPM
             set
             {
                 blockAcc = value;
+               
                 if (blockAcc)
                 {
                     // txtAcc.Enabled = true;

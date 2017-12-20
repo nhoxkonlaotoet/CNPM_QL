@@ -1,5 +1,5 @@
 ﻿using System;
-using CNPM.DB_Layer;
+using CNPM.DA_Layer;
 using System.Data;
 
 namespace CNPM.BL_Layer
@@ -58,17 +58,20 @@ namespace CNPM.BL_Layer
         {
             string sqlString = "Update DonHang set ThoiDiemDatHang='" + date + "',MaKH= " + cusId + ",TrangThai= N'" + status + "' where MaDH="+id+";";
             sqlString += "delete from GiaoHang where MaDH=" + id;
-
+            
             return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
         }
         public bool Update(int id, string date, int cost, int cusId, int EmpId, string status, ref string err)
         {
-            string sqlString = "Update DonHang set ThoiDiemDatHang='" + date + "',MaKH= " + cusId + ",TrangThai= N'" + status + "' where MaDH=" + id+";";
+            string sqlString = "";
             if (IsDelivered(id))
             {
-                sqlString += "delete from GiaoHang where MaDH=" + id;
+                sqlString += "delete from GiaoHang where MaDH=" + id+";";
             }
-            sqlString += "Insert into GiaoHang values(" + id + ", " + EmpId + ", '" + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + "')";
+            sqlString += "Insert into GiaoHang values(" + id + ", " + EmpId + ", '" + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + "');";
+            sqlString+= "Update DonHang set ThoiDiemDatHang='" + date + "',MaKH= " + cusId + ",TrangThai= N'" + status + "' where MaDH=" + id + ";";
+            if (status == Values.ORDER_STATE_RECEIVED)
+                sqlString += @"update NhanVien set TrangThai=N'Rảnh' where MaNV=" + EmpId + ";";
             return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
         }
         public bool Delete(int id, ref string err)

@@ -1,4 +1,4 @@
-﻿using CNPM.DB_Layer;
+﻿using CNPM.DA_Layer;
 using System.Data;
 
 namespace CNPM.BL_Layer
@@ -15,6 +15,14 @@ namespace CNPM.BL_Layer
             string sqlString = @"select MaSP, LoaiSanPham.MaLoai, TenLoai as TenSanPham, DungTich, Gia, TrangThai, NgaySanXuat, HanSuDung
                                 from sanpham, loaisanpham 
                                 where sanpham.maloai=loaisanpham.maloai";
+            return db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
+        }
+        public DataTable Products(string searchString)
+        {
+            string sqlString = @"select MaSP, LoaiSanPham.MaLoai, TenLoai as TenSanPham, DungTich, Gia, TrangThai, NgaySanXuat, HanSuDung
+                                from sanpham, loaisanpham 
+                                where sanpham.maloai=loaisanpham.maloai and (TenLoai  like '%"+searchString+ @"%' 
+                                        or TrangThai like '%" + searchString + @"%' )";
             return db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
         }
         public DataTable TypeSource()

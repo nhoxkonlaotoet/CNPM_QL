@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
-
+using CNPM.BL_Layer;
 namespace CNPM
 {
     public partial class FormFrame : Form
     {
-
+        string user;
         const string CONTROLLER = "Controller",
                         PRODUCT = "Product",
                         CUSTOMER = "Customer",
@@ -15,6 +16,31 @@ namespace CNPM
                         SALARY = "Salary",
                         FEEDBACK = "Feedback",
                         ACCOUNT = "Account";
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            OnLoad(e);
+        }
+
+        public string User
+        {
+            get
+            {
+                return user;
+            }
+
+            set
+            {
+
+                user = value;
+                lblUser.Text = user;
+                if (new BLLogin().Role(user) == Values.ROLE_ADMIN)
+                    btnAccount.Show();
+                else
+                    btnAccount.Hide();
+            }
+        }
+
         public FormFrame()
         {
             InitializeComponent();
@@ -24,14 +50,21 @@ namespace CNPM
         private void FormFrame_Load(object sender, EventArgs e)
         {
             FormLogin form = new FormLogin();
+
+            form.Login += new EventHandler(getUser);
+
             Hide();
             form.ShowDialog();
             Show();
+            btnMenu_Click(btnDelivery, e);
         }
-
+        private void getUser(object sender, EventArgs e)
+        {
+            User = (string)sender;
+        }
         void init()
         {
-            btnController.Tag = CONTROLLER;
+            btnDelivery.Tag = CONTROLLER;
             btnProduct.Tag = PRODUCT;
             btnCustomer.Tag = CUSTOMER;
             btnOrder.Tag = ORDER;
@@ -86,6 +119,10 @@ namespace CNPM
                     fi.Show();
                     break;
                 case FEEDBACK:
+                    FormFeedback fe1 = new FormFeedback();
+                    fe1.MdiParent = this;
+                    fe1.Dock = DockStyle.Fill;
+                    fe1.Show();
                     break;
                 case SALARY:
                     FormSalary fs = new FormSalary();
@@ -93,13 +130,22 @@ namespace CNPM
                     fs.Dock = DockStyle.Fill;
                     fs.Show();
                     break;
+                case ACCOUNT:
+                    if (new BLLogin().Role(user) == Values.ROLE_ADMIN)
+                    {
+                        FormAccount fc2 = new FormAccount();
+                        fc2.MdiParent = this;
+                        fc2.Dock = DockStyle.Fill;
+                        fc2.Show();
+                    }
+                    break;
                 default: break;
             }
 
 
         }
         private void CreateInvoid(object sender, EventArgs e)
-        { 
+        {
             string orderId = (string)sender;
             MessageBox.Show(orderId);
         }

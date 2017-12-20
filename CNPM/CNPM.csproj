@@ -62,11 +62,19 @@
     <Compile Include="BL_Layer\BLDelivery.cs" />
     <Compile Include="BL_Layer\BLCustomer.cs" />
     <Compile Include="BL_Layer\BLEmployee.cs" />
+    <Compile Include="BL_Layer\BLFeedback.cs" />
     <Compile Include="BL_Layer\BLInvoice.cs" />
     <Compile Include="BL_Layer\BLLogin.cs" />
     <Compile Include="BL_Layer\BLOrder.cs" />
     <Compile Include="BL_Layer\BLProduct.cs" />
-    <Compile Include="DB_Layer\DBMain.cs" />
+    <Compile Include="BL_Layer\BLSalary.cs" />
+    <Compile Include="DA_Layer\DBMain.cs" />
+    <Compile Include="FormAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAccount.Designer.cs">
+      <DependentUpon>FormAccount.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormDelivery.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +92,12 @@
     </Compile>
     <Compile Include="FormEmployee.Designer.cs">
       <DependentUpon>FormEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormFeedback.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFeedback.Designer.cs">
+      <DependentUpon>FormFeedback.cs</DependentUpon>
     </Compile>
     <Compile Include="FormFrame.cs">
       <SubType>Form</SubType>
@@ -134,10 +148,14 @@
     <Compile Include="MyMessageBox.Designer.cs">
       <DependentUpon>MyMessageBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Values.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AddInvoice.resx">
       <DependentUpon>AddInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAccount.resx">
+      <DependentUpon>FormAccount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDelivery.resx">
       <DependentUpon>FormDelivery.cs</DependentUpon>
@@ -147,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmployee.resx">
       <DependentUpon>FormEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFeedback.resx">
+      <DependentUpon>FormFeedback.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFrame.resx">
       <DependentUpon>FormFrame.cs</DependentUpon>

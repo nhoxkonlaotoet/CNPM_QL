@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using CNPM.BL_Layer;
+using System.Drawing;
+
 namespace CNPM
 {
     public partial class FormInvoice : Form
@@ -8,8 +10,13 @@ namespace CNPM
         public FormInvoice()
         {
             InitializeComponent();
+            init();
         }
-
+        void init()
+        {
+            btnSearch.Image = Image.FromFile(Values.URL_SEARCH);
+            btnReload.Image = Image.FromFile(Values.URL_REFRESH);
+        }
         private void FormInvoice_Load(object sender, EventArgs e)
         {
             LoadData();
@@ -89,6 +96,11 @@ namespace CNPM
             int typeId = int.Parse(dgvDetail.Rows[r].Cells["MaLoai"].Value.ToString());
             try { pic.Image = MyConvert.ByteArrayToImage((byte[])new BLOrder().ProductImage(typeId).Rows[0][0]); }
             catch { pic.Image = null; }
+        }
+
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            LoadData();
         }
     }
 }

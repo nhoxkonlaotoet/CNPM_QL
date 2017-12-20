@@ -8,14 +8,36 @@ namespace CNPM
 {
     public partial class FormOrder : Form
     {
-        const string SENT = "Đã gửi", DELIVERED = "Đang chuyển", RECEIVED = "Đã nhận";
+        
         bool block, blockDetail, add, addDetail;
+
+        public FormOrder()
+        {
+            InitializeComponent();
+
+            init();
+        }
+        void init()
+        {
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            dgvOrder.Columns.Add(btn);
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.Width = 40;
+            btn.HeaderText = "";
+            btn.Name = "btn";
+            btn.DefaultCellStyle.BackColor = Color.White;
+            btn.UseColumnTextForButtonValue = true;
+            btnReload.Image = Image.FromFile(Values.URL_REFRESH);
+            btnSearch.Image = Image.FromFile(Values.URL_SEARCH);
+        }
+
+
         private void dgvOrder_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (Block)
                 return;
-            if(!cboStatus.Items.Contains(DELIVERED))
-                cboStatus.Items.Add(DELIVERED);
+            if(!cboStatus.Items.Contains(Values.ORDER_STATE_DELIVERED))
+                cboStatus.Items.Add(Values.ORDER_STATE_DELIVERED);
             int r = dgvOrder.CurrentCell.RowIndex;
             if (r < 0)
                 r = 0;
@@ -39,7 +61,7 @@ namespace CNPM
             txtId.Text = dgvOrder.Rows[r].Cells["MaDH"].Value.ToString();
             txtDate.Text = dgvOrder.Rows[r].Cells["ThoiDiemDatHang"].Value.ToString();
             cboCusID.SelectedIndex = cboCusID.FindString(dgvOrder.Rows[r].Cells["MaKH"].Value.ToString());
-            if (!state.Contains(SENT))
+            if (!state.Contains(Values.ORDER_STATE_SENT))
             {
                 cbIsDelivered.Enabled = false;
                 int empId = new BLOrder().ShipperId(int.Parse(txtId.Text));
@@ -50,10 +72,10 @@ namespace CNPM
                 }
                 else
                     cbIsDelivered.Checked = false;
-                if (state.Contains(DELIVERED))
+                if (state.Contains(Values.ORDER_STATE_DELIVERED))
                 {
-                    if(cboStatus.Items.Contains(SENT))
-                        cboStatus.Items.Remove(SENT);
+                    if(cboStatus.Items.Contains(Values.ORDER_STATE_SENT))
+                        cboStatus.Items.Remove(Values.ORDER_STATE_SENT);
                     cboEmpID.Enabled = true;
                 }
                 else
@@ -63,8 +85,8 @@ namespace CNPM
             }
             else
             {
-                if (!cboStatus.Items.Contains(SENT))
-                    cboStatus.Items.Add(SENT);
+                if (!cboStatus.Items.Contains(Values.ORDER_STATE_SENT))
+                    cboStatus.Items.Add(Values.ORDER_STATE_SENT);
                 cbIsDelivered.Enabled = true;
                 cbIsDelivered.Checked = false;
                 cboEmpID.Enabled = true;
@@ -97,19 +119,7 @@ namespace CNPM
                 txtEmpName.Text = (string)drv.Row.ItemArray[1];
         }
 
-        public FormOrder()
-        {
-            InitializeComponent();
-            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-            dgvOrder.Columns.Add(btn);
-            btn.FlatStyle = FlatStyle.Flat;
-            btn.Width = 40;
-            btn.HeaderText = "";
-            btn.Name = "btn";
-            btn.DefaultCellStyle.BackColor = Color.White;
-            btn.UseColumnTextForButtonValue = true;
-
-        }
+       
 
         private void FormOrder_Load(object sender, EventArgs e)
         {
@@ -166,10 +176,10 @@ namespace CNPM
                 if (cbIsDelivered.Checked)
                 {
                     int empId = int.Parse(cboEmpID.Text);
-                    f = db.Insert(date, 0, cusId, empId, SENT, ref err);
+                    f = db.Insert(date, 0, cusId, empId, Values.ORDER_STATE_SENT, ref err);
                 }
                 else
-                    f = db.Insert(date, 0, cusId, SENT, ref err);
+                    f = db.Insert(date, 0, cusId, Values.ORDER_STATE_SENT, ref err);
                 if (f)
                     MessageBox.Show("Đã thêm");
                 else
@@ -187,9 +197,14 @@ namespace CNPM
                 {
                     int empId = int.Parse(cboEmpID.Text);
                     f = db.Update(id, date, cost, cusId, empId, status, ref err);
+                    MessageBox.Show(status);
+                }
+                else
+                {
+                    f = db.Update(id, date, cost, cusId, status, ref err);
+                   
 
                 }
-                else f = db.Update(id, date, cost, cusId, status, ref err);
 
                 if (f)
                     MessageBox.Show("Đã cập nhật");
@@ -416,11 +431,11 @@ namespace CNPM
                     pnlInfor.Enabled = true;
                     if (add)
                     {
-                        if (!cboStatus.Items.Contains(SENT))
-                            cboStatus.Items.Add(SENT);
+                        if (!cboStatus.Items.Contains(Values.ORDER_STATE_SENT))
+                            cboStatus.Items.Add(Values.ORDER_STATE_SENT);
                         txtId.ResetText();
                         txtDate.Text = DateTime.Now.ToString();
-                        cboStatus.SelectedIndex = cboStatus.FindString(SENT);
+                        cboStatus.SelectedIndex = cboStatus.FindString(Values.ORDER_STATE_SENT);
                         cbIsDelivered.Checked = false;
                         cbIsDelivered.Enabled = true;
                         cboEmpID.DataSource = new BLOrder().FreeEmployees(-1);
@@ -430,13 +445,13 @@ namespace CNPM
                     }
                     else
                     {
-                        if (cboStatus.Text != DELIVERED)
+                        if (cboStatus.Text != Values.ORDER_STATE_DELIVERED)
                             try
                             {
-                                cboStatus.Items.Remove(DELIVERED);
+                                cboStatus.Items.Remove(Values.ORDER_STATE_DELIVERED);
                             }
                             catch { }
-                        if (cboStatus.Text == RECEIVED)
+                        if (cboStatus.Text == Values.ORDER_STATE_RECEIVED)
                             cboStatus.Enabled = false;
                         else
                             cboStatus.Enabled = true;
@@ -488,7 +503,7 @@ namespace CNPM
                 {
                     DateTime deliveryTime = new BLOrder().DeliveryTime(int.Parse(txtId.Text));
                     addDetail = false;
-                    if (!cboStatus.Text.Contains(RECEIVED)
+                    if (!cboStatus.Text.Contains(Values.ORDER_STATE_RECEIVED)
                         && (deliveryTime == DateTime.MinValue || DateTime.Now - deliveryTime <= new TimeSpan(0,10,0))) // chỉ đc thêm/ xóa sp khi đơn hàng chưa quá 10p
                     {
                         btnAddDetail.Enabled = true;

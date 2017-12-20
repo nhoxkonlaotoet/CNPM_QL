@@ -1,4 +1,4 @@
-﻿using CNPM.DB_Layer;
+﻿using CNPM.DA_Layer;
 using System.Data;
 
 namespace CNPM.BL_Layer
@@ -18,11 +18,30 @@ namespace CNPM.BL_Layer
         public bool Insert(string date, int cost, int orderId, int empId, ref string err)
         {
             string sqlString = @"insert into HoaDon values('" + date + "', " + cost + ", " + orderId + ", " + empId + ");";
-            return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+            if (db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err))
+            {
+                if (RecentlyInvoiceId(empId, orderId, date) != -1)
+                {
+                    sqlString = "insert into TienCong values(" + empId + ", " + RecentlyInvoiceId(empId, orderId, date) + "," + (float)((float)cost * 0.2) + ", '" + date + "');";
+                    return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
+
+                }
+            }
+
+            return false;
+        }
+        public int RecentlyInvoiceId(int empId, int orderId, string date)
+        {
+            string sqlString = @"select MaHD from hoadon where NgayIn ='" + date + "' and MaDH =" + orderId + " and MaNV =" + empId;
+            DataTable dt = db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
+            if (dt.Rows.Count > 0)
+                return int.Parse(dt.Rows[0][0].ToString());
+            else return -1;
         }
         public bool Delete(int invoiceId, ref string err)
         {
-            string sqlString = @"delete from HoaDon where MaHD=" + invoiceId;
+            string sqlString = @"delete from HoaDon where MaHD=" + invoiceId+";";
+            sqlString += @"delete from TienCong where MaHD=" + invoiceId;
             return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
         }
         public int RecentlyInvoiceId(int orderId)
@@ -53,11 +72,11 @@ having  sum(DaThanhToan) <TongSoTien";
 from 	(select DonHang.MaDH, KhachHang.MaKH, KhachHang.HoTen as TenKhach
     from DonHang left outer join KhachHang
     on DonHang.MaKH=KhachHang.MaKH 
-    where DonHang.MaDH="+orderId+@")as DH left outer join
+    where DonHang.MaDH=" + orderId + @")as DH left outer join
 (select MaDH, NhanVien.MaNV, HoTen as TenNhanVien 
 from NhanVien,GiaoHang
 where NhanVien.MaNV=GiaoHang.MaNV
-and MaDH="+orderId+@")as GH on DH.MaDH=GH.MaDH";
+and MaDH=" + orderId + @")as GH on DH.MaDH=GH.MaDH";
             return db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
         }
         public DataTable Detail(int orderId)
@@ -73,10 +92,11 @@ group by LoaiSanPham.MaLoai, TenLoai, Gia";
 
 
 
-        public bool InsertDetail(int invoiceId, int productId, int price, ref string err)
+        public bool InsertDetail(int invoiceId, int empId, int productId, int price, ref string err)
         {
             string sqlString = @"insert into ChiTietHoaDon values(" + invoiceId + ", " + productId + ", " + price + ");";
-            sqlString += @"update HoaDon set TongSoTien = TongSoTien + " + price + " where MaHD=" + invoiceId;
+            sqlString += @"update HoaDon set TongSoTien = TongSoTien + " + price + " where MaHD=" + invoiceId + ";";
+            sqlString += @"Update TienCong set SoTien=SoTien+" + (float)((float)price * 0.2) + "where MaHD=" + invoiceId + " and MaNV=" + empId;
             return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
         }
 
@@ -85,7 +105,7 @@ group by LoaiSanPham.MaLoai, TenLoai, Gia";
             string sqlString = @"select top 1 MaSP
 from (select ChiTietDonHang.MaSP 
 		from ChiTietDonHang,SanPham 
-		where  ChiTietDonHang.MaSP=SanPham.MaSP and MaLoai="+ typeId+@" and MaDH="+orderId+ @" 
+		where  ChiTietDonHang.MaSP=SanPham.MaSP and MaLoai=" + typeId + @" and MaDH=" + orderId + @" 
 except select ChiTietHoaDon.MaSP 
 		from ChiTietHoaDon, HoaDon, SanPham
 		where ChiTietHoaDon.MaHD=HoaDon.MaHD and ChiTietHoaDon.MaSP=SanPham.MaSP and MaLoai=" + typeId + @" and MaDH=" + orderId + @")as A";
@@ -116,10 +136,10 @@ except select ChiTietHoaDon.MaSP
         {
             string sqlString = @"select LoaiSanPham.MaLoai, TenLoai, count(SanPham.MaSP) as SoLuong,Gia as DonGia, sum(Gia) as ThanhTien
 from ChiTietHoaDon,SanPham, LoaiSanPham 
-where ChiTietHoaDon.MaSP=SanPham.MaSP and SanPham.MaLoai=LoaiSanPham.MaLoai and MaHD="+ invoiceId+@"
+where ChiTietHoaDon.MaSP=SanPham.MaSP and SanPham.MaLoai=LoaiSanPham.MaLoai and MaHD=" + invoiceId + @"
 group by LoaiSanPham.MaLoai, TenLoai, Gia";
             return db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
         }
-       
+
     }
 }

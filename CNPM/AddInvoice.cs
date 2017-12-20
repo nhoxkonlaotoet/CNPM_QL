@@ -57,8 +57,24 @@ namespace CNPM
             string date = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
             int orderId = int.Parse(cboOrderId.Text);
             DataTable dt = db.OrderInfor(orderId);
-            if (dt.Rows.Count < 0) return;
-            int empId = int.Parse(dt.Rows[0]["MaNV"].ToString());
+            if (dt.Rows.Count == 0) return;
+
+            bool none_check = true;
+            foreach (DataGridViewRow rowType in dgvDetail.Rows)
+            {
+                if ((bool)rowType.Cells[0].Value)
+                {
+                    none_check = false;
+                    break;
+                }
+            }
+            if (none_check)
+            {
+                MessageBox.Show("Hãy chọn sản phẩm cần thanh toán");
+                return;
+            }
+
+                    int empId = int.Parse(dt.Rows[0]["MaNV"].ToString());
             if (db.Insert(date, 0, orderId, empId, ref err))
             {
                 int invoiceId = db.RecentlyInvoiceId(orderId);
@@ -70,7 +86,7 @@ namespace CNPM
                         int price = (int)rowType.Cells["DonGia"].Value;
                         for (int i = 0; i < n; i++)
                         {
-                            if (!db.InsertDetail(invoiceId,
+                            if (!db.InsertDetail(invoiceId,empId,
                                 db.UnpaidProductId(orderId, (int)rowType.Cells["MaLoai"].Value),
                                 price, ref err))
                             {
@@ -122,6 +138,8 @@ namespace CNPM
 
         private void dgvDetail_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (dgvDetail.Rows.Count == 0)
+                return;
             int r = dgvDetail.CurrentCell.RowIndex;
             if (r < 0)
                 r = 0;

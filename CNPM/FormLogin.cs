@@ -5,6 +5,7 @@ namespace CNPM
 {
     public partial class FormLogin : Form
     {
+        public event EventHandler Login;
         bool loged = false;
         public FormLogin()
         {
@@ -21,6 +22,7 @@ namespace CNPM
             if (db.Login(id, password))
             {
                 loged = true;
+                Login?.Invoke(txtID.Text.Trim(), e);
                 Close();
             }
         }

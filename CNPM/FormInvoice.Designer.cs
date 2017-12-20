@@ -303,6 +303,7 @@
             this.btnReload.Size = new System.Drawing.Size(35, 35);
             this.btnReload.TabIndex = 7;
             this.btnReload.UseVisualStyleBackColor = true;
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
             // 
             // dgvInvoice
             // 

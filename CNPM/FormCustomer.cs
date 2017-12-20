@@ -16,16 +16,25 @@ namespace CNPM
         }
         void init()
         {
-            btnEditAcc.Image = Image.FromFile("edit.png");
-            btnSearch.Image = Image.FromFile("search.png");
-            btnLocate.Image = Image.FromFile("locate.png");
+            btnEditAcc.Image = Image.FromFile(Values.URL_EDIT);
+            btnSearch.Image = Image.FromFile(Values.URL_SEARCH);
+            btnLocate.Image = Image.FromFile(Values.URL_LOCATE);
+            btnReload.Image = Image.FromFile(Values.URL_REFRESH);
+            cboStatus.Items.Add(Values.STATE_ACTIVE);
+            cboStatus.Items.Add(Values.STATE_BAN);
+           
+
         }
 
         private void dgvCustomer_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (Block)
-                return;
+         
             int r = dgvCustomer.CurrentCell.RowIndex;
+            if (r < 0)
+                r = 0;
+            dgvCustomer.Rows[r].Selected = true;
+            if (Block || BlockAcc)
+                return;
             txtId.Text = dgvCustomer.Rows[r].Cells["MaKH"].Value.ToString();
             txtName.Text = dgvCustomer.Rows[r].Cells["HoTen"].Value.ToString();
             txtAge.Text = dgvCustomer.Rows[r].Cells["Tuoi"].Value.ToString();
@@ -61,12 +70,15 @@ namespace CNPM
             add = true;
             Block = true;
             resetcontrols();
+            txtName.Focus();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
             add = false;
             Block = true;
+            txtName.Focus();
+
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -141,6 +153,13 @@ namespace CNPM
         private void FormCustomer_Load(object sender, EventArgs e)
         {
             LoadData();
+            BLLogin db = new BLLogin();
+            if (db.Role(((FormFrame)MdiParent).User) != Values.ROLE_ADMIN)
+            {
+                pnlAcc.Hide();
+                pnlInfor.Location = new Point(pnlInfor.Location.X + 200, pnlInfor.Location.Y);
+                pnlList.Location = new Point(pnlList.Location.X + 200, pnlList.Location.Y);
+            }
         }
         void LoadData()
         {
@@ -196,13 +215,11 @@ namespace CNPM
                     pnlInfor.Enabled = true;
                     if (add)
                     {
-                        cboPhoneNumber.Enabled = true;
-                        txtId.Enabled = true;
+                        cboPhoneNumber.Enabled = true;  
                     }
                     else
                     {
                         cboPhoneNumber.Enabled = false;
-                        txtId.Enabled = false;
                     }
                     btnAdd.Enabled = false;
                     btnEdit.Enabled = false;
@@ -262,7 +279,12 @@ namespace CNPM
 
         private void btnCancelAcc_Click(object sender, EventArgs e)
         {
+            BlockAcc = false;
+        }
 
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            LoadData();
         }
 
         public bool BlockAcc
@@ -275,6 +297,7 @@ namespace CNPM
             set
             {
                 blockAcc = value;
+             
                 if (blockAcc)
                 {
                     // txtAcc.Enabled = true;

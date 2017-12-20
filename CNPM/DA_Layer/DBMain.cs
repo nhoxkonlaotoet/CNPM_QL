@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CNPM.DB_Layer
+namespace CNPM.DA_Layer
 {
     public class DBMain
     {

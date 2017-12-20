@@ -12,7 +12,7 @@ namespace CNPM
         const int DEFAULTNUMBER = 1, MAXLENGTH = 4;
         bool block, blockType, add, addType;
         int quantity;
-
+        bool search;
 
         public FormProduct()
         {
@@ -21,11 +21,11 @@ namespace CNPM
         }
         void init()
         {
-            btnAddType.Image = Image.FromFile("add.png");
-            btnEditType.Image = Image.FromFile("edit.png");
-            btnDeleteType.Image = Image.FromFile("delete.png");
-            btnSearch.Image = Image.FromFile("search.png");
-
+            btnAddType.Image = Image.FromFile(Values.URL_ADD);
+            btnEditType.Image = Image.FromFile(Values.URL_EDIT);
+            btnDeleteType.Image = Image.FromFile(Values.URL_DELETE);
+            btnSearch.Image = Image.FromFile(Values.URL_SEARCH);
+            btnReload.Image = Image.FromFile(Values.URL_REFRESH);
         }
         private void FormProduct_Load(object sender, EventArgs e)
         {
@@ -44,8 +44,10 @@ namespace CNPM
             cboTypeId.DisplayMember = "MaLoai";
             cboTypeId1.DataSource = db.TypeSource();
             cboTypeId1.DisplayMember = "MaLoai";
-
-            dgvProduct.DataSource = db.Products();
+            if (search)
+                dgvProduct.DataSource = db.Products(txtSearch.Text);
+            else
+                dgvProduct.DataSource = db.Products();
             Block = false;
             BlockType = false;
         }
@@ -60,6 +62,9 @@ namespace CNPM
             if (Block)
                 return;
             int r = dgvProduct.CurrentCell.RowIndex;
+            if (r < 0)
+                r = 0;
+            dgvProduct.Rows[r].Selected = true;
             txtId.Text = dgvProduct.Rows[r].Cells["MaSP"].Value.ToString().Trim();
             txtManufactureDate.Text = ((DateTime)dgvProduct.Rows[r].Cells["NgaySanXuat"].Value).ToString("MM/dd/yyyy");
             txtExpireDate.Text = ((DateTime)dgvProduct.Rows[r].Cells["HanSuDung"].Value).ToString("MM/dd/yyyy");
@@ -312,7 +317,7 @@ namespace CNPM
 
         private void txtQuantity_TextChanged(object sender, EventArgs e)
         {
-            if (txtQuantity.Text == "" || quantity==0)
+            if (txtQuantity.Text == "" || quantity == 0)
             {
                 txtQuantity.Text = DEFAULTNUMBER.ToString();
                 return;
@@ -326,13 +331,25 @@ namespace CNPM
             }
         }
 
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            search = true;
+            LoadData();
+            search = false;
+        }
+
         private void txtQuantity_KeyDown(object sender, KeyEventArgs e)
         {
-            
+
             if ((e.KeyCode >= Keys.D0 && e.KeyCode <= Keys.D9)
                   || (e.KeyCode >= Keys.NumPad0 && e.KeyCode <= Keys.NumPad9))
             {
-                if (quantity / (int)Math.Pow(10, MAXLENGTH-1) >= 1)
+                if (quantity / (int)Math.Pow(10, MAXLENGTH - 1) >= 1)
                     return;
                 quantity *= 10;
                 quantity += e.KeyValue % 48;
