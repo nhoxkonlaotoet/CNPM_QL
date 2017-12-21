@@ -23,3 +23,4 @@ D:\HK5\SE\CNPM\CNPM\obj\Debug\CNPM.FormSalary.resources
 D:\HK5\SE\CNPM\CNPM\obj\Debug\CNPM.AddInvoice.resources
 D:\HK5\SE\CNPM\CNPM\obj\Debug\CNPM.FormAccount.resources
 D:\HK5\SE\CNPM\CNPM\obj\Debug\CNPM.FormFeedback.resources
+D:\HK5\SE\CNPM\CNPM\obj\Debug\CNPM.csprojResolveAssemblyReference.cache

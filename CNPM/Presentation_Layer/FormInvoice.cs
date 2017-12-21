@@ -36,6 +36,8 @@ namespace CNPM
         }
         private void dgvInvoice_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (dgvInvoice.Rows.Count == 0)
+                return;
             int r = dgvInvoice.CurrentCell.RowIndex;
             if (r < 0)
                 r = 0;
@@ -44,12 +46,19 @@ namespace CNPM
             txtDate.Text = dgvInvoice.Rows[r].Cells["NgayIn"].Value.ToString();
             txtInvoiceId.Text = dgvInvoice.Rows[r].Cells["MaHD"].Value.ToString();
             txtOrderID.Text = dgvInvoice.Rows[r].Cells["MaDH"].Value.ToString();
+           
+            txtTotal.Text = dgvInvoice.Rows[r].Cells["TongSoTien"].Value.ToString();
             txtEmpID.Text = dgvInvoice.Rows[r].Cells["MaNV"].Value.ToString();
             txtCusID.Text = dgvInvoice.Rows[r].Cells["MaKH"].Value.ToString();
-            txtTotal.Text = dgvInvoice.Rows[r].Cells["TongSoTien"].Value.ToString();
             BLInvoice db = new BLInvoice();
-            txtEmpName.Text = db.EmpName((int)dgvInvoice.Rows[r].Cells["MaNV"].Value);
-            txtCusName.Text = db.CusName((int)dgvInvoice.Rows[r].Cells["MaKH"].Value);
+            try
+            {
+                txtEmpName.Text = db.EmpName(int.Parse(txtEmpID.Text));
+                txtCusName.Text = db.CusName(int.Parse(txtCusID.Text));
+            }
+            catch { txtEmpName.ResetText();
+                txtCusName.ResetText();
+            }
             LoadDetail();
         }
 

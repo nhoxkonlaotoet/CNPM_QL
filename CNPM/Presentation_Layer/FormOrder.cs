@@ -34,7 +34,7 @@ namespace CNPM
 
         private void dgvOrder_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (Block)
+            if (Block || dgvOrder.Rows.Count==0)
                 return;
             if(!cboStatus.Items.Contains(Values.ORDER_STATE_DELIVERED))
                 cboStatus.Items.Add(Values.ORDER_STATE_DELIVERED);

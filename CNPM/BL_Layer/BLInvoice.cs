@@ -12,7 +12,8 @@ namespace CNPM.BL_Layer
         }
         public DataTable Invoices()
         {
-            string sqlString = @"select MaHD,HoaDon.MaDH,MaKH,MaNV, NgayIn,HoaDon.TongSoTien from HoaDon, DonHang where HoaDon.MaDH=DonHang.MaDH";
+            string sqlString = @"select MaHD,HoaDon.MaDH,MaKH,MaNV, NgayIn,HoaDon.TongSoTien
+ from HoaDon left outer join DonHang on HoaDon.MaDH=DonHang.MaDH";
             return db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
         }
         public bool Insert(string date, int cost, int orderId, int empId, ref string err)
@@ -95,6 +96,7 @@ group by LoaiSanPham.MaLoai, TenLoai, Gia";
         public bool InsertDetail(int invoiceId, int empId, int productId, int price, ref string err)
         {
             string sqlString = @"insert into ChiTietHoaDon values(" + invoiceId + ", " + productId + ", " + price + ");";
+            sqlString += @"update SanPham set TrangThai=N'Đã bán' where MaSP=" + productId;
             sqlString += @"update HoaDon set TongSoTien = TongSoTien + " + price + " where MaHD=" + invoiceId + ";";
             sqlString += @"Update TienCong set SoTien=SoTien+" + (float)((float)price * 0.2) + "where MaHD=" + invoiceId + " and MaNV=" + empId;
             return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);

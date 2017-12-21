@@ -6,9 +6,20 @@ namespace CNPM.BL_Layer
     public class BLLogin
     {
         DBMain db;
+        public string state;
         public BLLogin()
         {
             db = new DBMain();
+        }
+        public bool Connect(string IP)
+        {
+            DBMain.server = IP;
+            db = new DBMain();
+            db.Connect(ref state);
+            if (state == "Open")
+                return true;
+            else
+                return false;
         }
         public bool Login(string id, string password)
         {

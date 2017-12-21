@@ -30,6 +30,8 @@
         {
             this.gMapControl1 = new GMap.NET.WindowsForms.GMapControl();
             this.btnOK = new System.Windows.Forms.Button();
+            this.txtAddress = new System.Windows.Forms.TextBox();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // gMapControl1
@@ -62,20 +64,42 @@
             // 
             // btnOK
             // 
+            this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOK.Location = new System.Drawing.Point(389, 455);
+            this.btnOK.Location = new System.Drawing.Point(395, 466);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(170, 53);
+            this.btnOK.Size = new System.Drawing.Size(140, 42);
             this.btnOK.TabIndex = 1;
             this.btnOK.Text = "Xác nhận";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
+            // txtAddress
+            // 
+            this.txtAddress.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAddress.Location = new System.Drawing.Point(228, 38);
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(474, 29);
+            this.txtAddress.TabIndex = 2;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.BackColor = System.Drawing.Color.White;
+            this.btnSearch.Location = new System.Drawing.Point(700, 38);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(44, 29);
+            this.btnSearch.TabIndex = 3;
+            this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // FormMap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(927, 520);
+            this.Controls.Add(this.btnSearch);
+            this.Controls.Add(this.txtAddress);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.gMapControl1);
             this.Name = "FormMap";
@@ -83,6 +107,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMap_FormClosing);
             this.Load += new System.EventHandler(this.FormMap_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -90,5 +115,7 @@
 
         private GMap.NET.WindowsForms.GMapControl gMapControl1;
         private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.TextBox txtAddress;
+        private System.Windows.Forms.Button btnSearch;
     }
 }

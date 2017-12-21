@@ -87,7 +87,7 @@ namespace CNPM.BL_Layer
 
         public DataTable FreeEmployees(int orderId)
         {
-            string sqlString = @" Select NhanVien.MaNV, HoTen from NhanVien left outer join GiaoHang 
+            string sqlString = @" Select distinct NhanVien.MaNV, HoTen from NhanVien left outer join GiaoHang 
                                 on NhanVien.MaNV=GiaoHang.MaNV where (MaDH="+orderId+" or TrangThai=N'Rảnh')";
             return db.ExecuteQueryDataSet(sqlString, CommandType.Text).Tables[0];
         }

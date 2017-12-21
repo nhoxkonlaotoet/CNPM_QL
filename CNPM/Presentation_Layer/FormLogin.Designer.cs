@@ -33,6 +33,8 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnShowMore = new System.Windows.Forms.Button();
+            this.cboIP = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // txtID
@@ -82,19 +84,48 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Mật khẩu: ";
             // 
+            // btnShowMore
+            // 
+            this.btnShowMore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnShowMore.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnShowMore.FlatAppearance.BorderSize = 0;
+            this.btnShowMore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnShowMore.Location = new System.Drawing.Point(-1, 257);
+            this.btnShowMore.Name = "btnShowMore";
+            this.btnShowMore.Size = new System.Drawing.Size(45, 23);
+            this.btnShowMore.TabIndex = 3;
+            this.btnShowMore.UseVisualStyleBackColor = false;
+            this.btnShowMore.Click += new System.EventHandler(this.btnShowMore_Click);
+            // 
+            // cboIP
+            // 
+            this.cboIP.FormattingEnabled = true;
+            this.cboIP.Location = new System.Drawing.Point(249, 259);
+            this.cboIP.Name = "cboIP";
+            this.cboIP.Size = new System.Drawing.Size(173, 21);
+            this.cboIP.TabIndex = 4;
+            this.cboIP.Visible = false;
+            // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(421, 262);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ClientSize = new System.Drawing.Size(421, 280);
+            this.Controls.Add(this.cboIP);
+            this.Controls.Add(this.btnShowMore);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtID);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormLogin";
             this.Text = "Đăng nhập";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormLogin_FormClosing);
+            this.Load += new System.EventHandler(this.FormLogin_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -107,5 +138,7 @@
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnShowMore;
+        private System.Windows.Forms.ComboBox cboIP;
     }
 }

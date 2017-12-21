@@ -239,7 +239,11 @@ namespace CNPM
 
         private void btnLocate_Click(object sender, EventArgs e)
         {
-            FormMap f = new FormMap();
+            FormMap f;
+            if (add)
+                f = new FormMap();
+            else
+                f = new FormMap(double.Parse(txtLat.Text), double.Parse(txtLng.Text));
             f.ShowDialog();
             if(f.isOK)
             {

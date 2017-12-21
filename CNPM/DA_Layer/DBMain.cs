@@ -10,7 +10,8 @@ namespace CNPM.DA_Layer
 {
     public class DBMain
     {
-        string strConnectionString = @"Server= 192.168.173.1; 
+        public static string server;
+        string strConnectionString = @"Server= "+server+@"; 
                                         Database=QuanLyBanNuoc; 
                                         User=abcdef; Password=123456";
 
@@ -19,9 +20,21 @@ namespace CNPM.DA_Layer
         SqlDataAdapter da = null;
         public DBMain()
         {
+       
             conn = new SqlConnection(strConnectionString);
             comm = conn.CreateCommand();
         }
+        public void Connect(ref string state)
+        {//kiểm tra kết nối, nếu kết nối thành công thì trạng thái là "Open"
+         // ngược lại là "Closed"
+            if (conn.State == ConnectionState.Open)
+                conn.Close();
+            try { conn.Open(); }
+            catch { }
+            state = conn.State.ToString();
+        }
+
+
         public DataSet ExecuteQueryDataSet(string strSQl, CommandType ct)
         {
             if (conn.State == ConnectionState.Open)
